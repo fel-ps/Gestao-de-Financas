@@ -1,7 +1,16 @@
+///////////////////////////////////////////////////////////////////////////////
+///             Universidade Federal do Rio Grande do Norte                 ///
+///                 Centro de Ensino Superior do Seridó                     ///
+///               Departamento de Computação e Tecnologia                   ///
+///                  Disciplina DCT1106 -- Programação                      ///
+///              Projeto Sistema de Gestão de Finanças                      ///
+///             Desenvolvido por Felipe Augusto (@fel-ps)                   ///
+///////////////////////////////////////////////////////////////////////////////
+
 #include <stdio.h>
 #include <stdlib.h>
 
-// FUNÇÕES
+// ASSINATURA DAS FUNÇÕES
 void inicio(void);
 void cadastro_cliente(void);
 void cadastro_receita(void);
@@ -10,18 +19,42 @@ void relatorios(void);
 void sobre(void);
 
 // VARIÁVEIS
-char opc[1]= "";
+char opc[2];
 
 // PROGRAMA PRINCIPAL
 int main(){
 
-    sobre();
     inicio();
-    printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+    printf("\nDigite o que deseja fazer: "); scanf("%1s", &opc);
+    
+    switch (opc[0]) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
+        case '1':
+            cadastro_cliente();
+            break;
+        case '2':
+            cadastro_receita();
+            break;
+        case '3':
+            cadastro_despesa();
+            break;
+        case '4':
+            relatorios();
+            break;
+        case '5':
+            sobre();
+            break;
+        case '0':
+            printf("FIM");
+            break;
+        default:
+            printf("OPÇÃO INVÁLIDA!");
+            break;
+    }
 
-    printf("%s", &opc);
+    return 0;
 }
 
+// FUNÇÕES
 void inicio(void){
     system("clear||cls");
     printf("=========================\n");
@@ -82,13 +115,15 @@ void relatorios(void){
 
 void sobre(void) {
     system("clear||cls");
-    printf("======================================================================\n");
-    printf("=============== Sistema de Gestão de Finanças Pessoais ===============\n");
-    printf("======================================================================\n");
-    printf("\nEsse projeto tem como objetivo a conclusão de DCT1106 - Programação, ministrada por Flavius Gorgônio");
-    printf("\nse trata de um sistema de gestão de finança pessoal, que visa conter todos os requisitos necessarios para ser avaliado");
-    printf("\ndesenvolvido por @fel-ps, discente em Bacharelado em Sistemas de Informação - UFRN CERES."); 
-    printf("\nbase utilizada para desenvolver o projeto está localizada nesse endereço github: https://github.com/FlaviusGorgonio/LinguaSolta.git\n");
+    printf("========================================================================================================================\n");
+    printf("======================================= Sistema de Gestão de Finanças Pessoais =======================================\n");
+    printf("========================================================================================================================\n");
+    printf("\nEsse projeto tem como objetivo a conclusão de DCT1106 - Programação, ministrada por Flavius Gorgônio.");
+    printf("\nSe trata de um sistema de gestão de finanças pessoais, que visa auxiliar os usuários a gerenciarem me-");
+    printf("\nlhor suas finanças. Desenvolvido por @fel-ps, discente em Sistemas de Informação - UFRN. Base utilizada"); 
+    printf("\npara desenvolver o projeto está localizada no endereço github: https://github.com/FlaviusGorgonio/LinguaSolta.git\n");
+    printf("\n");
+    printf("\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar(); // Aguarda o usuário pressionar Enter
 }
 
