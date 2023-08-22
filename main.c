@@ -7,6 +7,7 @@
 ///             Desenvolvido por Felipe Augusto (@fel-ps)                   ///
 ///////////////////////////////////////////////////////////////////////////////
 
+// BIBLIOTECAS
 #include <stdio.h>
 #include <stdlib.h>
 
