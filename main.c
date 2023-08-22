@@ -120,8 +120,8 @@ void sobre(void) {
     printf("========================================================================================================================\n");
     printf("\nEsse projeto tem como objetivo a conclusão de DCT1106 - Programação, ministrada por Flavius Gorgônio.");
     printf("\nSe trata de um sistema de gestão de finanças pessoais, que visa auxiliar os usuários a gerenciarem me-");
-    printf("\nlhor suas finanças. Desenvolvido por @fel-ps, discente em Sistemas de Informação - UFRN. Base utilizada"); 
-    printf("\npara desenvolver o projeto está localizada no endereço github: https://github.com/FlaviusGorgonio/LinguaSolta.git\n");
+    printf("\nlhor suas finanças. Desenvolvido por @fel-ps, discente em Sistemas de Informação - UFRN. Bases utilizadas"); 
+    printf("\npara desenvolver o projeto estão localizadas nos seguintes endereços: ENDEREÇO GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git | ENDEREÇO REPLIT: https://replit.com/@aronsilvagm/GestaoDeFinancas4#main.py\n");
     printf("\n");
     printf("\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar(); // Aguarda o usuário pressionar Enter
