@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///             Universidade Federal do Rio Grande do Norte                 ///
-///                 Centro de Ensino Superior do SeridÛ                     ///
-///               Departamento de ComputaÁ„o e Tecnologia                   ///
-///                  Disciplina DCT1106 -- ProgramaÁ„o                      ///
-///              Projeto Sistema de Gest„o de FinanÁas                      ///
+///                 Centro de Ensino Superior do Serid√≥                     ///
+///               Departamento de Computa√ß√£o e Tecnologia                   ///
+///                  Disciplina DCT1106 -- Programa√ß√£o                      ///
+///              Projeto Sistema de Gest√£o de finan√ßas                      ///
 ///             Desenvolvido por Felipe Augusto (@fel-ps)                   ///
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
-// ASSINATURA DAS FUN«’ES
+// ASSINATURA DAS FUN√á√ïES
 void inicio(void);
 void cadastro_cliente(void);
 void cadastro_receita(void);
@@ -20,7 +20,7 @@ void cadastro_despesa(void);
 void relatorios(void);
 void sobre(void);
 
-// VARI¡VEIS
+// VARI√ÅVEIS
 char opc[2];
 
 // PROGRAMA PRINCIPAL
@@ -51,14 +51,14 @@ int main(){
             printf("FIM");
             break;
         default:
-            printf("OP«√O INV¡LIDA!");
+            printf("OPÔøΩÔøΩO INVÔøΩLIDA!");
             break;
     }
 
     return 0;
 }
 
-// FUN«’ES
+// FUN√á√ïES
 void inicio(void){
     system("clear||cls");
     printf("=========================\n");
@@ -67,7 +67,7 @@ void inicio(void){
     printf("1 - Cadastro de Clientes\n");
     printf("2 - Cadastro de Receitas\n");
     printf("3 - Cadastro de Despesas\n");
-    printf("4 - RelatÛrios Mensais\n");
+    printf("4 - RelatÔøΩrios Mensais\n");
     printf("5 - Sobre\n");
     printf("0 - Sair\n");
 }
@@ -111,7 +111,7 @@ void cadastro_despesa(void){
 void relatorios(void){
     system("clear||cls");
     printf("==================================\n");
-    printf("======= RelatÛrios Mensais =======\n");
+    printf("======= Relat√≥rios Mensais =======\n");
     printf("==================================\n");
     printf("1 - Relatar Saldo\n");
     printf("0 - Sair\n");
@@ -120,15 +120,15 @@ void relatorios(void){
 void sobre(void) {
     system("clear||cls");
     printf("========================================================================================================================\n");
-    printf("======================================= Sistema de Gest„o de FinanÁas Pessoais =======================================\n");
+    printf("======================================= Sistema de Gest√£o de Finan√ßas Pessoais =======================================\n");
     printf("========================================================================================================================\n");
-    printf("\nEsse projeto tem como objetivo a conclus„o de DCT1106 - ProgramaÁ„o, ministrada por Flavius GorgÙnio.");
-    printf("\nSe trata de um sistema de gest„o de finanÁas pessoais, que visa auxiliar os usu·rios a gerenciarem me-");
-    printf("\nlhor suas finanÁas. Desenvolvido por @fel-ps, discente em Sistemas de InformaÁ„o - UFRN. Bases utilizadas"); 
-    printf("\npara desenvolver o projeto est„o localizadas nos seguintes endereÁos: ENDERE«O GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git | ENDERE«O REPLIT: https://replit.com/@aronsilvagm/GestaoDeFinancas4#main.py\n");
+    printf("\nEsse projeto tem como objetivo a conclus√£o de DCT1106 - Programa√ß√£o, ministrada por Flavius Gorg√¥nio.");
+    printf("\nSe trata de um sistema de gest√£o de finan√ßas pessoais, que visa auxiliar os usu√°rios a gerenciarem me-");
+    printf("\nlhor suas finan√ßas. Desenvolvido por @fel-ps, discente em Sistemas de Informa√ß√£o - UFRN. Bases utilizadas"); 
+    printf("\npara desenvolver o projeto est√£o localizadas nos seguintes endere√ßos: ENDERE√áO GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git | ENDERE√áO REPLIT: https://replit.com/@aronsilvagm/GestaoDeFinancas4#main.py\n");
     printf("\n");
     printf("\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar(); // Aguarda o usu·rio pressionar Enter
+    getchar(); // Aguarda o usu√°rio pressionar Enter
 }
 
 
