@@ -51,7 +51,7 @@ int main(){
             printf("FIM");
             break;
         default:
-            printf("OP��O INV�LIDA!");
+            printf("OPÇÃO INVÁLIDA!");
             break;
     }
 
