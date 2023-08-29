@@ -56,7 +56,8 @@ int main(){
                 start = 0;
                 break;
             default:
-                printf("\nOPÇÃO INVÁLIDA!");
+                system("clear||cls");
+                printf("OPÇÃO INVÁLIDA!");
                 printf("\n");
                 system("pause");
                 break;
@@ -111,7 +112,8 @@ void cadastro_cliente(void){
                 continuar = 0;
                 break;
             default:
-                printf("\nOPÇÃO INVÁLIDA!");
+                system("clear||cls");
+                printf("OPÇÃO INVÁLIDA!");
                 printf("\n");
                 system("pause");
                 break;
@@ -150,7 +152,8 @@ void cadastro_receita(void){
                 continuar = 0;
                 break;
             default:
-                printf("\nOPÇÃO INVÁLIDA!");
+                system("clear||cls");
+                printf("OPÇÃO INVÁLIDA!");
                 printf("\n");
                 system("pause");
                 break;
@@ -189,7 +192,8 @@ void cadastro_despesa(void){
                 continuar = 0;
                 break;
             default:
-                printf("\nOPÇÃO INVÁLIDA!");
+                system("clear||cls");
+                printf("OPÇÃO INVÁLIDA!");
                 printf("\n");
                 system("pause");
                 break;
@@ -216,7 +220,8 @@ void relatorios(void){
                 continuar = 0;
                 break;
             default:
-                printf("\nOPÇÃO INVÁLIDA!");
+                system("clear||cls");
+                printf("OPÇÃO INVÁLIDA!");
                 printf("\n");
                 system("pause");
                 break;
