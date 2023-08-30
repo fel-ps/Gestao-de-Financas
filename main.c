@@ -56,10 +56,7 @@ int main(){
                 start = 0;
                 break;
             default:
-                system("clear||cls");
-                printf("OPÇÃO INVÁLIDA!");
-                printf("\n");
-                system("pause");
+                invalido();
                 break;
         }
     }
@@ -70,24 +67,24 @@ int main(){
 // FUNÇÕES
 void inicio(void){
     system("clear||cls");
-    printf("=========================\n");
-    printf("======= PyBanking =======\n");
-    printf("=========================\n");
-    printf("1 - Cadastro de Clientes\n");
-    printf("2 - Cadastro de Receitas\n");
-    printf("3 - Cadastro de Despesas\n");
-    printf("4 - Relatórios Mensais\n");
-    printf("5 - Sobre\n");
-    printf("0 - Sair\n");
+    printf("=========================      |  |    \n");
+    printf("======= PyBanking =======    $$|$$|$$  \n");
+    printf("=========================   $$ |  | $$ \n");
+    printf("1 - Cadastro de Clientes    $$ |  |    \n");
+    printf("2 - Cadastro de Receitas     $$|$$|$$  \n");
+    printf("3 - Cadastro de Despesas       |  | $$ \n");
+    printf("4 - Relatórios Mensais      $$ |  | $$ \n");
+    printf("5 - Sobre                    $$|$$|$$  \n");
+    printf("0 - Sair                       |  |    \n");
 }
 
 void cadastro_cliente(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
-        printf("====================================\n");
-        printf("======= Cadastro de Clientes =======\n");
-        printf("====================================\n");
+        printf("==================================\n");
+        printf("====== Cadastro de Clientes ======\n");
+        printf("==================================\n");
         printf("1 - Cadastrar Cliente\n");
         printf("2 - Pesquisar Cliente\n");
         printf("3 - Editar Cliente\n");
@@ -112,10 +109,7 @@ void cadastro_cliente(void){
                 continuar = 0;
                 break;
             default:
-                system("clear||cls");
-                printf("OPÇÃO INVÁLIDA!");
-                printf("\n");
-                system("pause");
+                invalido();
                 break;
         }
     }
@@ -125,9 +119,9 @@ void cadastro_receita(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
-        printf("====================================\n");
-        printf("======= Cadastro de Receitas =======\n");
-        printf("====================================\n");
+        printf("==================================\n");
+        printf("====== Cadastro de Receitas ======\n");
+        printf("==================================\n");
         printf("1 - Cadastrar Receita\n");
         printf("2 - Pesquisar Receita\n");
         printf("3 - Editar Receita\n");
@@ -152,10 +146,7 @@ void cadastro_receita(void){
                 continuar = 0;
                 break;
             default:
-                system("clear||cls");
-                printf("OPÇÃO INVÁLIDA!");
-                printf("\n");
-                system("pause");
+                invalido();
                 break;
         }
     }
@@ -165,9 +156,9 @@ void cadastro_despesa(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
-        printf("====================================\n");
-        printf("======= Cadastro de Despesas =======\n");
-        printf("====================================\n");
+        printf("==================================\n");
+        printf("====== Cadastro de Despesas ======\n");
+        printf("==================================\n");
         printf("1 - Cadastrar Despesa\n");
         printf("2 - Pesquisar Despesa\n");
         printf("3 - Editar Despesa\n");
@@ -192,10 +183,7 @@ void cadastro_despesa(void){
                 continuar = 0;
                 break;
             default:
-                system("clear||cls");
-                printf("OPÇÃO INVÁLIDA!");
-                printf("\n");
-                system("pause");
+                invalido();
                 break;
         }
     }
@@ -205,9 +193,9 @@ void relatorios(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
-        printf("==================================\n");
-        printf("======= Relatórios Mensais =======\n");
-        printf("==================================\n");
+        printf("================================\n");
+        printf("====== Relatórios Mensais ======\n");
+        printf("================================\n");
         printf("1 - Relatar Saldo\n");
         printf("0 - Sair\n");
         printf("\nDigite o que deseja fazer: "); scanf("%1s", &opc);
@@ -220,10 +208,7 @@ void relatorios(void){
                 continuar = 0;
                 break;
             default:
-                system("clear||cls");
-                printf("OPÇÃO INVÁLIDA!");
-                printf("\n");
-                system("pause");
+                invalido();
                 break;
         }
     }
@@ -241,8 +226,17 @@ void sobre(void) {
     printf("\nENDEREÇO GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git\n");
     printf("ENDEREÇO REPLIT: https://replit.com/@aronsilvagm/GestaoDeFinancas4#main.py\n");
     printf("\n");
-    system("pause");
+    printf("\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+    fflush(stdin);
 }
 
-
+void invalido(void) {
+    system("clear||cls");
+    printf("OPÇÃO INVÁLIDA!");
+    printf("\n");
+    printf("Tecle <ENTER> para continuar...\n");
+    getchar();
+    fflush(stdin);
+}
     
