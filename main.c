@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///             Universidade Federal do Rio Grande do Norte                 ///
-///                 Centro de Ensino Superior do Seridó                     ///
-///               Departamento de Computação e Tecnologia                   ///
-///                  Disciplina DCT1106 -- Programação                      ///
-///              Projeto Sistema de Gestão de finanças                      ///
+///                 Centro de Ensino Superior do Serido                     ///
+///               Departamento de Computacao e Tecnologia                   ///
+///                  Disciplina DCT1106 -- Programacao                      ///
+///              Projeto Sistema de Gestao de financas                      ///
 ///             Desenvolvido por Felipe Augusto (@fel-ps)                   ///
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
-// ASSINATURA DAS FUNÇÕES
+// ASSINATURA DAS FUNCOES
 void inicio(void);
 void cadastro_cliente(void);
 void cadastro_receita(void);
@@ -20,7 +20,7 @@ void cadastro_despesa(void);
 void relatorios(void);
 void sobre(void);
 
-// VARIÁVEIS
+// VARIAVEIS
 char opc[2];
 int start = 1;
 int continuar;
@@ -28,7 +28,6 @@ int continuar;
 // PROGRAMA PRINCIPAL
 int main(){
 
-    setlocale(LC_ALL,"Portuguese_Brazil");
 
     while (start == 1){
         inicio();
@@ -64,7 +63,7 @@ int main(){
     return 0;
 }
 
-// FUNÇÕES
+// FUNCOES
 void inicio(void){
     system("clear||cls");
     printf("=========================      |  |    \n");
@@ -73,7 +72,7 @@ void inicio(void){
     printf("1 - Cadastro de Clientes    $$ |  |    \n");
     printf("2 - Cadastro de Receitas     $$|$$|$$  \n");
     printf("3 - Cadastro de Despesas       |  | $$ \n");
-    printf("4 - Relatórios Mensais      $$ |  | $$ \n");
+    printf("4 - Relatorios Mensais      $$ |  | $$ \n");
     printf("5 - Sobre                    $$|$$|$$  \n");
     printf("0 - Sair                       |  |    \n");
 }
@@ -94,16 +93,16 @@ void cadastro_cliente(void){
         fflush(stdin);
         switch (opc[0]) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
             case '1':
-                // FUNÇÃO CADASTRAR
+                // FUNCAO CADASTRAR
                 break;
             case '2':
-                // FUNÇÃO PESQUISAR
+                // FUNCAO PESQUISAR
                 break;
             case '3':
-                // FUNÇÃO EDITAR
+                // FUNCAO EDITAR
                 break;
             case '4':
-                // FUNÇÃO EXCLUIR
+                // FUNCAO EXCLUIR
                 break;
             case '0':
                 continuar = 0;
@@ -131,16 +130,16 @@ void cadastro_receita(void){
         fflush(stdin);
         switch (opc[0]) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
             case '1':
-                // FUNÇÃO CADASTRAR
+                // FUNCAO CADASTRAR
                 break;
             case '2':
-                // FUNÇÃO PESQUISAR
+                // FUNCAO PESQUISAR
                 break;
             case '3':
-                // FUNÇÃO EDITAR
+                // FUNCAO EDITAR
                 break;
             case '4':
-                // FUNÇÃO EXCLUIR
+                // FUNCAO EXCLUIR
                 break;
             case '0':
                 continuar = 0;
@@ -168,16 +167,16 @@ void cadastro_despesa(void){
         fflush(stdin);
         switch (opc[0]) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
             case '1':
-                // FUNÇÃO CADASTRAR
+                // FUNCAO CADASTRAR
                 break;
             case '2':
-                // FUNÇÃO PESQUISAR
+                // FUNCAO PESQUISAR
                 break;
             case '3':
-                // FUNÇÃO EDITAR
+                // FUNCAO EDITAR
                 break;
             case '4':
-                // FUNÇÃO EXCLUIR
+                // FUNCAO EXCLUIR
                 break;
             case '0':
                 continuar = 0;
@@ -194,7 +193,7 @@ void relatorios(void){
     while (continuar == 1){
         system("clear||cls");
         printf("================================\n");
-        printf("====== Relatórios Mensais ======\n");
+        printf("====== Relatorios Mensais ======\n");
         printf("================================\n");
         printf("1 - Relatar Saldo\n");
         printf("0 - Sair\n");
@@ -202,7 +201,7 @@ void relatorios(void){
         fflush(stdin);
         switch (opc[0]) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
             case '1':
-                // FUNÇÃO RELATÓRIOS
+                // FUNCAO Relatorios
                 break;
             case '0':
                 continuar = 0;
@@ -217,14 +216,14 @@ void relatorios(void){
 void sobre(void) {
     system("clear||cls");
     printf("========================================================================================================================\n");
-    printf("======================================== Sistema de Gestão de Finanças Pessoais ========================================\n");
+    printf("======================================== Sistema de Gestao de financas Pessoais ========================================\n");
     printf("========================================================================================================================\n");
-    printf("\nEsse projeto tem como objetivo a conclusão de DCT1106 - Programação, ministrada por Flavius Gorgônio. Se trata de um sis");
-    printf("\nstema de gestão de finanças pessoais, que visa auxiliar os usuários a gerenciarem melhor suas finanças. Desenvolvido por");
-    printf("\n@fel-ps, discente em Sistemas de Informação - UFRN. Bases utilizadas para desenvolver o projeto estão localizadas nos se"); 
-    printf("\nguintes endereços:\n");
-    printf("\nENDEREÇO GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git\n");
-    printf("ENDEREÇO REPLIT: https://replit.com/@aronsilvagm/GestaoDeFinancas4#main.py\n");
+    printf("\nEsse projeto tem como objetivo a conclusao de DCT1106 - Programacao, ministrada por Flavius Gorgonio. Se trata de um sis");
+    printf("\nstema de gestao de financas pessoais, que visa auxiliar os usuarios a gerenciarem melhor suas financas. Desenvolvido por");
+    printf("\n@fel-ps, discente em Sistemas de Informacao - UFRN. Bases utilizadas para desenvolver o projeto estao localizadas nos se"); 
+    printf("\nguintes enderecos:\n");
+    printf("\nENDERECO GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git\n");
+    printf("ENDERECO REPLIT: https://replit.com/@aronsilvagm/GestaoDeFinancas4#main.py\n");
     printf("\n");
     printf("\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -233,7 +232,7 @@ void sobre(void) {
 
 void invalido(void) {
     system("clear||cls");
-    printf("OPÇÃO INVÁLIDA!");
+    printf("OPCAO INVALIDA!");
     printf("\n");
     printf("Tecle <ENTER> para continuar...\n");
     getchar();
