@@ -10,7 +10,6 @@
 // BIBLIOTECAS
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 
 // ASSINATURA DAS FUNCOES
 void inicio(void);
@@ -59,8 +58,6 @@ int main(){
                 break;
         }
     }
-
-    return 0;
 }
 
 // FUNCOES
