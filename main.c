@@ -18,6 +18,7 @@ void cadastro_receita(void);
 void cadastro_despesa(void);
 void relatorios(void);
 void sobre(void);
+void invalido(void);
 
 // VARIAVEIS
 char opc[2];
