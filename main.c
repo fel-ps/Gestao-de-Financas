@@ -29,12 +29,12 @@ int continuar;
 int main(){
 
 
-    while (start == 1){
+    do {
         inicio();
         printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
         
-        switch (opc) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
+        switch (opc) {
             case '1':
                 cadastro_cliente();
                 break;
@@ -58,7 +58,7 @@ int main(){
                 invalido();
                 break;
         }
-    }
+    } while (start == 1);
 }
 
 // FUNCOES
@@ -89,7 +89,7 @@ void cadastro_cliente(void){
         printf("0 - Sair\n");
         printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
-        switch (opc) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
+        switch (opc) {
             case '1':
                 // FUNCAO CADASTRAR
                 break;
@@ -126,7 +126,7 @@ void cadastro_receita(void){
         printf("0 - Sair\n");
         printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
-        switch (opc) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
+        switch (opc) {
             case '1':
                 // FUNCAO CADASTRAR
                 break;
@@ -163,7 +163,7 @@ void cadastro_despesa(void){
         printf("0 - Sair\n");
         printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
-        switch (opc) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
+        switch (opc) {
             case '1':
                 // FUNCAO CADASTRAR
                 break;
@@ -197,7 +197,7 @@ void relatorios(void){
         printf("0 - Sair\n");
         printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
-        switch (opc) { // ACESSANDO O PRIMEIRO CARACTERE DA STRING
+        switch (opc) {
             case '1':
                 // FUNCAO Relatorios
                 break;
