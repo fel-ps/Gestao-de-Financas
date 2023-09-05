@@ -21,36 +21,35 @@ void sobre(void);
 void invalido(void);
 
 // VARIAVEIS
-char opc;
+int opc;
 int start = 1;
 int continuar;
 
 // PROGRAMA PRINCIPAL
 int main(){
 
-
     do {
         inicio();
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        printf("\nDigite o que deseja fazer: "); scanf("%d", &opc);
         fflush(stdin);
         
         switch (opc) {
-            case '1':
+            case 1:
                 cadastro_cliente();
                 break;
-            case '2':
+            case 2:
                 cadastro_receita();
                 break;
-            case '3':
+            case 3:
                 cadastro_despesa();
                 break;
-            case '4':
+            case 4:
                 relatorios();
                 break;
-            case '5':
+            case 5:
                 sobre();
                 break;
-            case '0':
+            case 0:
                 printf("\nFIM");
                 start = 0;
                 break;
@@ -87,22 +86,22 @@ void cadastro_cliente(void){
         printf("3 - Editar Cliente\n");
         printf("4 - Excluir Cliente\n");
         printf("0 - Sair\n");
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        printf("\nDigite o que deseja fazer: "); scanf("%d", &opc);
         fflush(stdin);
         switch (opc) {
-            case '1':
+            case 1:
                 // FUNCAO CADASTRAR
                 break;
-            case '2':
+            case 2:
                 // FUNCAO PESQUISAR
                 break;
-            case '3':
+            case 3:
                 // FUNCAO EDITAR
                 break;
-            case '4':
+            case 4:
                 // FUNCAO EXCLUIR
                 break;
-            case '0':
+            case 0:
                 continuar = 0;
                 break;
             default:
@@ -124,22 +123,22 @@ void cadastro_receita(void){
         printf("3 - Editar Receita\n");
         printf("4 - Excluir Receita\n");
         printf("0 - Sair\n");
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        printf("\nDigite o que deseja fazer: "); scanf("%d", &opc);
         fflush(stdin);
         switch (opc) {
-            case '1':
+            case 1:
                 // FUNCAO CADASTRAR
                 break;
-            case '2':
+            case 2:
                 // FUNCAO PESQUISAR
                 break;
-            case '3':
+            case 3:
                 // FUNCAO EDITAR
                 break;
-            case '4':
+            case 4:
                 // FUNCAO EXCLUIR
                 break;
-            case '0':
+            case 0:
                 continuar = 0;
                 break;
             default:
@@ -161,22 +160,22 @@ void cadastro_despesa(void){
         printf("3 - Editar Despesa\n");
         printf("4 - Excluir Despesa\n");
         printf("0 - Sair\n");
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        printf("\nDigite o que deseja fazer: "); scanf("%d", &opc);
         fflush(stdin);
         switch (opc) {
-            case '1':
+            case 1:
                 // FUNCAO CADASTRAR
                 break;
-            case '2':
+            case 2:
                 // FUNCAO PESQUISAR
                 break;
-            case '3':
+            case 3:
                 // FUNCAO EDITAR
                 break;
-            case '4':
+            case 4:
                 // FUNCAO EXCLUIR
                 break;
-            case '0':
+            case 0:
                 continuar = 0;
                 break;
             default:
@@ -195,13 +194,13 @@ void relatorios(void){
         printf("================================\n");
         printf("1 - Relatar Saldo\n");
         printf("0 - Sair\n");
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        printf("\nDigite o que deseja fazer: "); scanf("%d", &opc);
         fflush(stdin);
         switch (opc) {
-            case '1':
+            case 1:
                 // FUNCAO Relatorios
                 break;
-            case '0':
+            case 0:
                 continuar = 0;
                 break;
             default:
