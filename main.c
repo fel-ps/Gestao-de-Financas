@@ -13,9 +13,9 @@
 
 // ASSINATURA DAS FUNCOES
 void inicio(void);
-void cadastro_cliente(void);
-void cadastro_receita(void);
-void cadastro_despesa(void);
+void modulo_cliente(void);
+void modulo_receita(void);
+void modulo_despesa(void);
 void relatorios(void);
 void sobre(void);
 void invalido(void);
@@ -35,13 +35,13 @@ int main(){
         
         switch (opc) {
             case '1':
-                cadastro_cliente();
+                modulo_cliente();
                 break;
             case '2':
-                cadastro_receita();
+                modulo_receita();
                 break;
             case '3':
-                cadastro_despesa();
+                modulo_despesa();
                 break;
             case '4':
                 relatorios();
@@ -74,7 +74,7 @@ void inicio(void){
     printf("0 - Sair                       |  |    \n");
 }
 
-void cadastro_cliente(void){
+void modulo_cliente(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
@@ -111,7 +111,7 @@ void cadastro_cliente(void){
     }
 }
 
-void cadastro_receita(void){
+void modulo_receita(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
@@ -148,7 +148,7 @@ void cadastro_receita(void){
     }
 }
 
-void cadastro_despesa(void){
+void modulo_despesa(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
