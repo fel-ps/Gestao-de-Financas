@@ -20,6 +20,23 @@ void relatorios(void);
 void sobre(void);
 void invalido(void);
 
+void cadastrar_cliente(void);
+void pesquisar_cliente(void);
+void editar_cliente(void);
+void esxcluir_cliente(void);
+
+void cadastrar_receita(void);
+void pesquisar_receita(void);
+void editar_receita(void);
+void esxcluir_receita(void);
+
+void cadastrar_despesa(void);
+void pesquisar_despesa(void);
+void editar_despesa(void);
+void esxcluir_despesa(void);
+
+void relatar_saldo(void);
+
 // VARIAVEIS
 char opc;
 int start = 1;
@@ -90,7 +107,8 @@ void modulo_cliente(void){
         fflush(stdin);
         switch (opc) {
             case '1':
-                // FUNCAO CADASTRAR
+                cadastrar_cliente();
+                getchar();
                 break;
             case '2':
                 // FUNCAO PESQUISAR
@@ -235,4 +253,10 @@ void invalido(void) {
     getchar();
     fflush(stdin);
 }
-    
+
+void cadastrar_cliente(void){
+    system("clear||cls");
+    printf("===============================\n");
+    printf("====== Cadastrar Cliente ======\n");
+    printf("===============================\n");
+}
