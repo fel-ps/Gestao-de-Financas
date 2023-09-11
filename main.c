@@ -1,22 +1,23 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///             Universidade Federal do Rio Grande do Norte                 ///
-///                 Centro de Ensino Superior do Serido                     ///
-///               Departamento de Computacao e Tecnologia                   ///
-///                  Disciplina DCT1106 -- Programacao                      ///
-///              Projeto Sistema de Gestao de financas                      ///
+///                 Centro de Ensino Superior do Seridó                     ///
+///               Departamento de Computação e Tecnologia                   ///
+///                  Disciplina DCT1106 -- Programação                      ///
+///              Projeto Sistema de Gestão de finanças                      ///
 ///             Desenvolvido por Felipe Augusto (@fel-ps)                   ///
 ///////////////////////////////////////////////////////////////////////////////
 
 // BIBLIOTECAS
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
 // ASSINATURA DAS FUNCOES
 void inicio(void);
 void modulo_cliente(void);
 void modulo_receita(void);
 void modulo_despesa(void);
-void relatorios(void);
+void modulo_relatorio(void);
 void sobre(void);
 void invalido(void);
 
@@ -45,9 +46,11 @@ int continuar;
 // PROGRAMA PRINCIPAL
 int main(){
 
+    setlocale(LC_CTYPE , "" );
+
     do {
         inicio();
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
         
         switch (opc) {
@@ -61,13 +64,13 @@ int main(){
                 modulo_despesa();
                 break;
             case '4':
-                relatorios();
+                modulo_relatorio();
                 break;
             case '5':
                 sobre();
                 break;
             case '0':
-                printf("\nFIM");
+                wprintf(L"\nFIM");
                 start = 0;
                 break;
             default:
@@ -80,30 +83,30 @@ int main(){
 // FUNCOES
 void inicio(void){
     system("clear||cls");
-    printf("=========================      |  |    \n");
-    printf("======= PyBanking =======    $$|$$|$$  \n");
-    printf("=========================   $$ |  | $$ \n");
-    printf("1 - Cadastro de Clientes    $$ |  |    \n");
-    printf("2 - Cadastro de Receitas     $$|$$|$$  \n");
-    printf("3 - Cadastro de Despesas       |  | $$ \n");
-    printf("4 - Relatorios Mensais      $$ |  | $$ \n");
-    printf("5 - Sobre                    $$|$$|$$  \n");
-    printf("0 - Sair                       |  |    \n");
+    wprintf(L"=========================      |  |    \n");
+    wprintf(L"======= PyBanking =======    $$|$$|$$  \n");
+    wprintf(L"=========================   $$ |  | $$ \n");
+    wprintf(L"1 - Cadastro de Clientes    $$ |  |    \n");
+    wprintf(L"2 - Cadastro de Receitas     $$|$$|$$  \n");
+    wprintf(L"3 - Cadastro de Despesas       |  | $$ \n");
+    wprintf(L"4 - Relatórios Mensais      $$ |  | $$ \n");
+    wprintf(L"5 - Sobre                    $$|$$|$$  \n");
+    wprintf(L"0 - Sair                       |  |    \n");
 }
 
 void modulo_cliente(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
-        printf("==================================\n");
-        printf("====== Cadastro de Clientes ======\n");
-        printf("==================================\n");
-        printf("1 - Cadastrar Cliente\n");
-        printf("2 - Pesquisar Cliente\n");
-        printf("3 - Editar Cliente\n");
-        printf("4 - Excluir Cliente\n");
-        printf("0 - Sair\n");
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        wprintf(L"==================================\n");
+        wprintf(L"====== Cadastro de Clientes ======\n");
+        wprintf(L"==================================\n");
+        wprintf(L"1 - Cadastrar Cliente\n");
+        wprintf(L"2 - Pesquisar Cliente\n");
+        wprintf(L"3 - Editar Cliente\n");
+        wprintf(L"4 - Excluir Cliente\n");
+        wprintf(L"0 - Sair\n");
+        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
         switch (opc) {
             case '1':
@@ -111,13 +114,13 @@ void modulo_cliente(void){
                 getchar();
                 break;
             case '2':
-                // FUNCAO PESQUISAR
+                // FUNÇÃO PESQUISAR
                 break;
             case '3':
-                // FUNCAO EDITAR
+                // FUNÇÃO EDITAR
                 break;
             case '4':
-                // FUNCAO EXCLUIR
+                // FUNÇÃO EXCLUIR
                 break;
             case '0':
                 continuar = 0;
@@ -133,28 +136,28 @@ void modulo_receita(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
-        printf("==================================\n");
-        printf("====== Cadastro de Receitas ======\n");
-        printf("==================================\n");
-        printf("1 - Cadastrar Receita\n");
-        printf("2 - Pesquisar Receita\n");
-        printf("3 - Editar Receita\n");
-        printf("4 - Excluir Receita\n");
-        printf("0 - Sair\n");
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        wprintf(L"==================================\n");
+        wprintf(L"====== Cadastro de Receitas ======\n");
+        wprintf(L"==================================\n");
+        wprintf(L"1 - Cadastrar Receita\n");
+        wprintf(L"2 - Pesquisar Receita\n");
+        wprintf(L"3 - Editar Receita\n");
+        wprintf(L"4 - Excluir Receita\n");
+        wprintf(L"0 - Sair\n");
+        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
         switch (opc) {
             case '1':
-                // FUNCAO CADASTRAR
+                // FUNÇÃO CADASTRAR
                 break;
             case '2':
-                // FUNCAO PESQUISAR
+                // FUNÇÃO PESQUISAR
                 break;
             case '3':
-                // FUNCAO EDITAR
+                // FUNÇÃO EDITAR
                 break;
             case '4':
-                // FUNCAO EXCLUIR
+                // FUNÇÃO EXCLUIR
                 break;
             case '0':
                 continuar = 0;
@@ -170,28 +173,28 @@ void modulo_despesa(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
-        printf("==================================\n");
-        printf("====== Cadastro de Despesas ======\n");
-        printf("==================================\n");
-        printf("1 - Cadastrar Despesa\n");
-        printf("2 - Pesquisar Despesa\n");
-        printf("3 - Editar Despesa\n");
-        printf("4 - Excluir Despesa\n");
-        printf("0 - Sair\n");
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        wprintf(L"==================================\n");
+        wprintf(L"====== Cadastro de Despesas ======\n");
+        wprintf(L"==================================\n");
+        wprintf(L"1 - Cadastrar Despesa\n");
+        wprintf(L"2 - Pesquisar Despesa\n");
+        wprintf(L"3 - Editar Despesa\n");
+        wprintf(L"4 - Excluir Despesa\n");
+        wprintf(L"0 - Sair\n");
+        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
         switch (opc) {
             case '1':
-                // FUNCAO CADASTRAR
+                // FUNÇÃO CADASTRAR
                 break;
             case '2':
-                // FUNCAO PESQUISAR
+                // FUNÇÃO PESQUISAR
                 break;
             case '3':
-                // FUNCAO EDITAR
+                // FUNÇÃO EDITAR
                 break;
             case '4':
-                // FUNCAO EXCLUIR
+                // FUNÇÃO EXCLUIR
                 break;
             case '0':
                 continuar = 0;
@@ -203,20 +206,20 @@ void modulo_despesa(void){
     }
 }
 
-void relatorios(void){
+void modulo_relatorio(void){
     continuar = 1;
     while (continuar == 1){
         system("clear||cls");
-        printf("================================\n");
-        printf("====== Relatorios Mensais ======\n");
-        printf("================================\n");
-        printf("1 - Relatar Saldo\n");
-        printf("0 - Sair\n");
-        printf("\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        wprintf(L"================================\n");
+        wprintf(L"====== Relatórios Mensais ======\n");
+        wprintf(L"================================\n");
+        wprintf(L"1 - Relatar Saldo\n");
+        wprintf(L"0 - Sair\n");
+        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
         fflush(stdin);
         switch (opc) {
             case '1':
-                // FUNCAO Relatorios
+                // FUNÇÃO Relatórios
                 break;
             case '0':
                 continuar = 0;
@@ -230,33 +233,33 @@ void relatorios(void){
 
 void sobre(void) {
     system("clear||cls");
-    printf("========================================================================================================================\n");
-    printf("======================================== Sistema de Gestao de financas Pessoais ========================================\n");
-    printf("========================================================================================================================\n");
-    printf("\nEsse projeto tem como objetivo a conclusao de DCT1106 - Programacao, ministrada por Flavius Gorgonio. Se trata de um sis");
-    printf("\nstema de gestao de financas pessoais, que visa auxiliar os usuarios a gerenciarem melhor suas financas. Desenvolvido por");
-    printf("\n@fel-ps, discente em Sistemas de Informacao - UFRN. Bases utilizadas para desenvolver o projeto estao localizadas nos se"); 
-    printf("\nguintes enderecos:\n");
-    printf("\nENDERECO GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git\n");
-    printf("ENDERECO REPLIT: https://replit.com/@aronsilvagm/GestaoDeFinancas4#main.py\n");
-    printf("\n");
-    printf("\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    wprintf(L"========================================================================================================================\n");
+    wprintf(L"======================================== Sistema de Gestão de finanças Pessoais ========================================\n");
+    wprintf(L"========================================================================================================================\n");
+    wprintf(L"\nEsse projeto tem como objetivo a conclusão de DCT1106 - Programação, ministrada por Flavius Gorgônio. Se trata de um sis");
+    wprintf(L"\nstema de Gestão de finanças pessoais, que visa auxiliar os usuários a gerenciarem melhor suas finanças. Desenvolvido por");
+    wprintf(L"\n@fel-ps, discente em Sistemas de Informação - UFRN. Bases utilizadas para desenvolver o projeto estao localizadas nos se"); 
+    wprintf(L"\nguintes endereços:\n");
+    wprintf(L"\nENDEREÇO GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git\n");
+    wprintf(L"ENDEREÇO REPLIT: https://replit.com/@aronsilvagm/GestaoDefinancas4#main.py\n");
+    wprintf(L"\n");
+    wprintf(L"\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
     fflush(stdin);
 }
 
 void invalido(void) {
     system("clear||cls");
-    printf("OPCAO INVALIDA!");
-    printf("\n");
-    printf("Tecle <ENTER> para continuar...\n");
+    wprintf(L"OPÇÃO INVALIDA!");
+    wprintf(L"\n");
+    wprintf(L"Tecle <ENTER> para continuar...\n");
     getchar();
     fflush(stdin);
 }
 
 void cadastrar_cliente(void){
     system("clear||cls");
-    printf("===============================\n");
-    printf("====== Cadastrar Cliente ======\n");
-    printf("===============================\n");
+    wprintf(L"===============================\n");
+    wprintf(L"====== Cadastrar Cliente ======\n");
+    wprintf(L"===============================\n");
 }
