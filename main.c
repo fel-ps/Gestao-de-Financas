@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
-// ASSINATURA DAS FUNCOES
+// ASSINATURA DAS FUNÇÕES
 void inicio(void);
 void modulo_cliente(void);
 void modulo_receita(void);
@@ -24,27 +24,27 @@ void invalido(void);
 void cadastrar_cliente(void);
 void pesquisar_cliente(void);
 void editar_cliente(void);
-void esxcluir_cliente(void);
+void excluir_cliente(void);
 
 void cadastrar_receita(void);
 void pesquisar_receita(void);
 void editar_receita(void);
-void esxcluir_receita(void);
+void excluir_receita(void);
 
 void cadastrar_despesa(void);
 void pesquisar_despesa(void);
 void editar_despesa(void);
-void esxcluir_despesa(void);
+void excluir_despesa(void);
 
 void relatar_saldo(void);
 
-// VARIAVEIS
+// VARIÁVEIS
 char opc;
 int start = 1;
 int continuar;
 
 // PROGRAMA PRINCIPAL
-int main(){
+int main(void){
 
     setlocale(LC_CTYPE , "" );
 
@@ -78,9 +78,11 @@ int main(){
                 break;
         }
     } while (start == 1);
+
+    return 0;
 }
 
-// FUNCOES
+// FUNÇÕES
 void inicio(void){
     system("clear||cls");
     wprintf(L"=========================      |  |    \n");
@@ -112,15 +114,22 @@ void modulo_cliente(void){
             case '1':
                 cadastrar_cliente();
                 getchar();
+                fflush(stdin);
                 break;
             case '2':
-                // FUNÇÃO PESQUISAR
+                pesquisar_cliente();
+                getchar();
+                fflush(stdin);
                 break;
             case '3':
-                // FUNÇÃO EDITAR
+                editar_cliente();
+                getchar();
+                fflush(stdin);
                 break;
             case '4':
-                // FUNÇÃO EXCLUIR
+                excluir_cliente();
+                getchar();
+                fflush(stdin);
                 break;
             case '0':
                 continuar = 0;
@@ -148,16 +157,24 @@ void modulo_receita(void){
         fflush(stdin);
         switch (opc) {
             case '1':
-                // FUNÇÃO CADASTRAR
+                cadastrar_receita();
+                getchar();
+                fflush(stdin);
                 break;
             case '2':
-                // FUNÇÃO PESQUISAR
+                pesquisar_receita();
+                getchar();
+                fflush(stdin);
                 break;
             case '3':
-                // FUNÇÃO EDITAR
+                editar_receita();
+                getchar();
+                fflush(stdin);
                 break;
             case '4':
-                // FUNÇÃO EXCLUIR
+                excluir_receita();
+                getchar();
+                fflush(stdin);
                 break;
             case '0':
                 continuar = 0;
@@ -185,16 +202,24 @@ void modulo_despesa(void){
         fflush(stdin);
         switch (opc) {
             case '1':
-                // FUNÇÃO CADASTRAR
+                cadastrar_despesa();
+                getchar();
+                fflush(stdin);
                 break;
             case '2':
-                // FUNÇÃO PESQUISAR
+                pesquisar_despesa();
+                getchar();
+                fflush(stdin);
                 break;
             case '3':
-                // FUNÇÃO EDITAR
+                editar_despesa();
+                getchar();
+                fflush(stdin);
                 break;
             case '4':
-                // FUNÇÃO EXCLUIR
+                excluir_despesa();
+                getchar();
+                fflush(stdin);
                 break;
             case '0':
                 continuar = 0;
@@ -257,9 +282,89 @@ void invalido(void) {
     fflush(stdin);
 }
 
+// FUNÇÕES DE CLIENTES
 void cadastrar_cliente(void){
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"====== Cadastrar Cliente ======\n");
+    wprintf(L"===============================\n");
+}
+
+void pesquisar_cliente(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"====== Pesquisar Cliente ======\n");
+    wprintf(L"===============================\n");
+}
+
+void editar_cliente(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"======== Editar Cliente =======\n");
+    wprintf(L"===============================\n");
+}
+
+void excluir_cliente(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"======= Excluir Cliente =======\n");
+    wprintf(L"===============================\n");
+}
+
+// FUNÇÕES DE RECEITAS
+void cadastrar_receita(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"====== Cadastrar Receita ======\n");
+    wprintf(L"===============================\n");
+}
+
+void pesquisar_receita(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"====== Pesquisar Receita ======\n");
+    wprintf(L"===============================\n");
+}
+
+void editar_receita(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"======== Editar Receita =======\n");
+    wprintf(L"===============================\n");
+}
+
+void excluir_receita(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"======= Excluir Receita =======\n");
+    wprintf(L"===============================\n");
+}
+
+// FUNÇÕES DE DESPESAS
+void cadastrar_despesa(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"====== Cadastrar Despesa ======\n");
+    wprintf(L"===============================\n");
+}
+
+void pesquisar_despesa(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"====== Pesquisar Despesa ======\n");
+    wprintf(L"===============================\n");
+}
+
+void editar_despesa(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"======== Editar Despesa =======\n");
+    wprintf(L"===============================\n");
+}
+
+void excluir_despesa(void){
+    system("clear||cls");
+    wprintf(L"===============================\n");
+    wprintf(L"======= Excluir Despesa =======\n");
     wprintf(L"===============================\n");
 }
