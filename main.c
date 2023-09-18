@@ -11,37 +11,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include "clientes.h"
+#include "receitas.h"
+#include "despesas.h"
+#include "relatorio.h"
+#include "variaveis.h"
+#include "funcoes.h"
 
 // ASSINATURA DAS FUNÇÕES
 void inicio(void);
-void modulo_cliente(void);
-void modulo_receita(void);
-void modulo_despesa(void);
-void modulo_relatorio(void);
 void sobre(void);
-void invalido(void);
-
-void cadastrar_cliente(void);
-void pesquisar_cliente(void);
-void editar_cliente(void);
-void excluir_cliente(void);
-
-void cadastrar_receita(void);
-void pesquisar_receita(void);
-void editar_receita(void);
-void excluir_receita(void);
-
-void cadastrar_despesa(void);
-void pesquisar_despesa(void);
-void editar_despesa(void);
-void excluir_despesa(void);
-
-void relatar_saldo(void);
 
 // VARIÁVEIS
-char opc;
-int start = 1;
-int continuar;
+char opc; //global
+char opc1;
 
 // PROGRAMA PRINCIPAL
 int main(void){
@@ -50,10 +33,10 @@ int main(void){
 
     do {
         inicio();
-        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc1);
         fflush(stdin);
         
-        switch (opc) {
+        switch (opc1) {
             case '1':
                 modulo_cliente();
                 break;
@@ -71,13 +54,12 @@ int main(void){
                 break;
             case '0':
                 wprintf(L"\nFIM");
-                start = 0;
                 break;
             default:
                 invalido();
                 break;
         }
-    } while (start == 1);
+    } while (opc1!='0');
 
     return 0;
 }
@@ -96,166 +78,6 @@ void inicio(void){
     wprintf(L"0 - Sair                       |  |    \n");
 }
 
-void modulo_cliente(void){
-    continuar = 1;
-    while (continuar == 1){
-        system("clear||cls");
-        wprintf(L"==================================\n");
-        wprintf(L"====== Cadastro de Clientes ======\n");
-        wprintf(L"==================================\n");
-        wprintf(L"1 - Cadastrar Cliente\n");
-        wprintf(L"2 - Pesquisar Cliente\n");
-        wprintf(L"3 - Editar Cliente\n");
-        wprintf(L"4 - Excluir Cliente\n");
-        wprintf(L"0 - Sair\n");
-        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
-        fflush(stdin);
-        switch (opc) {
-            case '1':
-                cadastrar_cliente();
-                getchar();
-                fflush(stdin);
-                break;
-            case '2':
-                pesquisar_cliente();
-                getchar();
-                fflush(stdin);
-                break;
-            case '3':
-                editar_cliente();
-                getchar();
-                fflush(stdin);
-                break;
-            case '4':
-                excluir_cliente();
-                getchar();
-                fflush(stdin);
-                break;
-            case '0':
-                continuar = 0;
-                break;
-            default:
-                invalido();
-                break;
-        }
-    }
-}
-
-void modulo_receita(void){
-    continuar = 1;
-    while (continuar == 1){
-        system("clear||cls");
-        wprintf(L"==================================\n");
-        wprintf(L"====== Cadastro de Receitas ======\n");
-        wprintf(L"==================================\n");
-        wprintf(L"1 - Cadastrar Receita\n");
-        wprintf(L"2 - Pesquisar Receita\n");
-        wprintf(L"3 - Editar Receita\n");
-        wprintf(L"4 - Excluir Receita\n");
-        wprintf(L"0 - Sair\n");
-        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
-        fflush(stdin);
-        switch (opc) {
-            case '1':
-                cadastrar_receita();
-                getchar();
-                fflush(stdin);
-                break;
-            case '2':
-                pesquisar_receita();
-                getchar();
-                fflush(stdin);
-                break;
-            case '3':
-                editar_receita();
-                getchar();
-                fflush(stdin);
-                break;
-            case '4':
-                excluir_receita();
-                getchar();
-                fflush(stdin);
-                break;
-            case '0':
-                continuar = 0;
-                break;
-            default:
-                invalido();
-                break;
-        }
-    }
-}
-
-void modulo_despesa(void){
-    continuar = 1;
-    while (continuar == 1){
-        system("clear||cls");
-        wprintf(L"==================================\n");
-        wprintf(L"====== Cadastro de Despesas ======\n");
-        wprintf(L"==================================\n");
-        wprintf(L"1 - Cadastrar Despesa\n");
-        wprintf(L"2 - Pesquisar Despesa\n");
-        wprintf(L"3 - Editar Despesa\n");
-        wprintf(L"4 - Excluir Despesa\n");
-        wprintf(L"0 - Sair\n");
-        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
-        fflush(stdin);
-        switch (opc) {
-            case '1':
-                cadastrar_despesa();
-                getchar();
-                fflush(stdin);
-                break;
-            case '2':
-                pesquisar_despesa();
-                getchar();
-                fflush(stdin);
-                break;
-            case '3':
-                editar_despesa();
-                getchar();
-                fflush(stdin);
-                break;
-            case '4':
-                excluir_despesa();
-                getchar();
-                fflush(stdin);
-                break;
-            case '0':
-                continuar = 0;
-                break;
-            default:
-                invalido();
-                break;
-        }
-    }
-}
-
-void modulo_relatorio(void){
-    continuar = 1;
-    while (continuar == 1){
-        system("clear||cls");
-        wprintf(L"================================\n");
-        wprintf(L"====== Relatórios Mensais ======\n");
-        wprintf(L"================================\n");
-        wprintf(L"1 - Relatar Saldo\n");
-        wprintf(L"0 - Sair\n");
-        wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
-        fflush(stdin);
-        switch (opc) {
-            case '1':
-                // FUNÇÃO Relatórios
-                break;
-            case '0':
-                continuar = 0;
-                break;
-            default:
-                invalido();
-                break;
-        }
-    }
-}
-
 void sobre(void) {
     system("clear||cls");
     wprintf(L"========================================================================================================================\n");
@@ -271,100 +93,4 @@ void sobre(void) {
     wprintf(L"\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
     fflush(stdin);
-}
-
-void invalido(void) {
-    system("clear||cls");
-    wprintf(L"OPÇÃO INVALIDA!");
-    wprintf(L"\n");
-    wprintf(L"Tecle <ENTER> para continuar...\n");
-    getchar();
-    fflush(stdin);
-}
-
-// FUNÇÕES DE CLIENTES
-void cadastrar_cliente(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"====== Cadastrar Cliente ======\n");
-    wprintf(L"===============================\n");
-}
-
-void pesquisar_cliente(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"====== Pesquisar Cliente ======\n");
-    wprintf(L"===============================\n");
-}
-
-void editar_cliente(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"======== Editar Cliente =======\n");
-    wprintf(L"===============================\n");
-}
-
-void excluir_cliente(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"======= Excluir Cliente =======\n");
-    wprintf(L"===============================\n");
-}
-
-// FUNÇÕES DE RECEITAS
-void cadastrar_receita(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"====== Cadastrar Receita ======\n");
-    wprintf(L"===============================\n");
-}
-
-void pesquisar_receita(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"====== Pesquisar Receita ======\n");
-    wprintf(L"===============================\n");
-}
-
-void editar_receita(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"======== Editar Receita =======\n");
-    wprintf(L"===============================\n");
-}
-
-void excluir_receita(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"======= Excluir Receita =======\n");
-    wprintf(L"===============================\n");
-}
-
-// FUNÇÕES DE DESPESAS
-void cadastrar_despesa(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"====== Cadastrar Despesa ======\n");
-    wprintf(L"===============================\n");
-}
-
-void pesquisar_despesa(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"====== Pesquisar Despesa ======\n");
-    wprintf(L"===============================\n");
-}
-
-void editar_despesa(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"======== Editar Despesa =======\n");
-    wprintf(L"===============================\n");
-}
-
-void excluir_despesa(void){
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"======= Excluir Despesa =======\n");
-    wprintf(L"===============================\n");
 }
