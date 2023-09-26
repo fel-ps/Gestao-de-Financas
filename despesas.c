@@ -10,7 +10,7 @@ void modulo_despesa(void){
     do {
         system("clear||cls");
         wprintf(L"==================================\n");
-        wprintf(L"====== Cadastro de Despesas ======\n");
+        wprintf(L"======= Módulo de Despesas =======\n");
         wprintf(L"==================================\n");
         wprintf(L"1 - Cadastrar Despesa\n");
         wprintf(L"2 - Pesquisar Despesa\n");
@@ -55,6 +55,10 @@ void cadastrar_despesa(void){
     wprintf(L"===============================\n");
     wprintf(L"====== Cadastrar Despesa ======\n");
     wprintf(L"===============================\n");
+    wprintf(L"\n");
+    wprintf(L"Digite o seu CPF:\n");
+    wprintf(L"Digite o valor($) da despesa:\n");
+    wprintf(L"Informe em que foi gasto o valor informado:\n");
 }
 
 void pesquisar_despesa(void){
@@ -62,6 +66,9 @@ void pesquisar_despesa(void){
     wprintf(L"===============================\n");
     wprintf(L"====== Pesquisar Despesa ======\n");
     wprintf(L"===============================\n");
+    wprintf(L"\n");
+    wprintf(L"Digite o seu CPF:\n");
+    // LISTAR DESPESAS
 }
 
 void editar_despesa(void){
@@ -69,6 +76,9 @@ void editar_despesa(void){
     wprintf(L"===============================\n");
     wprintf(L"======== Editar Despesa =======\n");
     wprintf(L"===============================\n");
+    wprintf(L"\n");
+    wprintf(L"Digite o seu CPF:\n");
+    // LISTAR DESPESAS
 }
 
 void excluir_despesa(void){
@@ -76,4 +86,7 @@ void excluir_despesa(void){
     wprintf(L"===============================\n");
     wprintf(L"======= Excluir Despesa =======\n");
     wprintf(L"===============================\n");
+    wprintf(L"\n");
+    wprintf(L"Digite o seu CPF:\n");
+    // LISTAR DESPESAS
 }

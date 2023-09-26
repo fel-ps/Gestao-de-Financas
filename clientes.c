@@ -10,7 +10,7 @@ void modulo_cliente(void){
     do {
         system("clear||cls");
         wprintf(L"==================================\n");
-        wprintf(L"====== Cadastro de Clientes ======\n");
+        wprintf(L"======= Módulo de Clientes =======\n");
         wprintf(L"==================================\n");
         wprintf(L"1 - Cadastrar Cliente\n");
         wprintf(L"2 - Pesquisar Cliente\n");
@@ -55,6 +55,11 @@ void cadastrar_cliente(void){
     wprintf(L"===============================\n");
     wprintf(L"====== Cadastrar Cliente ======\n");
     wprintf(L"===============================\n");
+    wprintf(L"\n");
+    wprintf(L"Nome:\n");
+    wprintf(L"CPF:\n");
+    wprintf(L"Telefone:\n");
+    wprintf(L"Endereço:\n");
 }
 
 void pesquisar_cliente(void){
@@ -62,6 +67,8 @@ void pesquisar_cliente(void){
     wprintf(L"===============================\n");
     wprintf(L"====== Pesquisar Cliente ======\n");
     wprintf(L"===============================\n");
+    wprintf(L"\n");
+    wprintf(L"Digite o CPF:\n");
 }
 
 void editar_cliente(void){
@@ -69,6 +76,8 @@ void editar_cliente(void){
     wprintf(L"===============================\n");
     wprintf(L"======== Editar Cliente =======\n");
     wprintf(L"===============================\n");
+    wprintf(L"\n");
+    wprintf(L"Digite o CPF:\n");
 }
 
 void excluir_cliente(void){
@@ -76,4 +85,6 @@ void excluir_cliente(void){
     wprintf(L"===============================\n");
     wprintf(L"======= Excluir Cliente =======\n");
     wprintf(L"===============================\n");
+    wprintf(L"\n");
+    wprintf(L"Digite o CPF:\n");
 }

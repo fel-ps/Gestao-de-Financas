@@ -10,7 +10,7 @@ void modulo_relatorio(void){
     do {
         system("clear||cls");
         wprintf(L"================================\n");
-        wprintf(L"====== Relatórios Mensais ======\n");
+        wprintf(L"===== Módulo de Relatórios =====\n");
         wprintf(L"================================\n");
         wprintf(L"1 - Relatar Saldo\n");
         wprintf(L"0 - Sair\n");
@@ -18,7 +18,9 @@ void modulo_relatorio(void){
         fflush(stdin);
         switch (opc) {
             case '1':
-                // FUNÇÃO Relatórios
+                relatar_saldo();
+                getchar();
+                fflush(stdin);
                 break;
             case '0':
                 break;
@@ -35,4 +37,7 @@ void relatar_saldo(void){
     wprintf(L"================================\n");
     wprintf(L"====== Relatório de Saldo ======\n");
     wprintf(L"================================\n");
+    wprintf(L"\n");
+    wprintf(L"Digite o seu CPF:\n");
+    // MOSTRAR SALDO
 }

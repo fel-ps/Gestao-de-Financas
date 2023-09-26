@@ -34,6 +34,7 @@ int main(void){
     do {
         inicio();
         wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc1);
+        getchar();
         fflush(stdin);
         
         switch (opc1) {
@@ -51,6 +52,8 @@ int main(void){
                 break;
             case '5':
                 sobre();
+                getchar();
+                fflush(stdin);
                 break;
             case '0':
                 wprintf(L"\nFIM");
@@ -70,10 +73,10 @@ void inicio(void){
     wprintf(L"=========================      |  |    \n");
     wprintf(L"======= PyBanking =======    $$|$$|$$  \n");
     wprintf(L"=========================   $$ |  | $$ \n");
-    wprintf(L"1 - Cadastro de Clientes    $$ |  |    \n");
-    wprintf(L"2 - Cadastro de Receitas     $$|$$|$$  \n");
-    wprintf(L"3 - Cadastro de Despesas       |  | $$ \n");
-    wprintf(L"4 - Relatórios Mensais      $$ |  | $$ \n");
+    wprintf(L"1 - Módulo de Clientes      $$ |  |    \n");
+    wprintf(L"2 - Módulo de Receitas       $$|$$|$$  \n");
+    wprintf(L"3 - Módulo de Despesas         |  | $$ \n");
+    wprintf(L"4 - Módulo de Relatórios    $$ |  | $$ \n");
     wprintf(L"5 - Sobre                    $$|$$|$$  \n");
     wprintf(L"0 - Sair                       |  |    \n");
 }
@@ -91,6 +94,4 @@ void sobre(void) {
     wprintf(L"ENDEREÇO REPLIT: https://replit.com/@aronsilvagm/GestaoDefinancas4#main.py\n");
     wprintf(L"\n");
     wprintf(L"\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-    fflush(stdin);
 }
