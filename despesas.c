@@ -18,6 +18,7 @@ void modulo_despesa(void){
         wprintf(L"4 - Excluir Despesa\n");
         wprintf(L"0 - Sair\n");
         wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        getchar();
         fflush(stdin);
         switch (opc) {
             case '1':

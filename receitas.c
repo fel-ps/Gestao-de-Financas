@@ -18,6 +18,7 @@ void modulo_receita(void){
         wprintf(L"4 - Excluir Receita\n");
         wprintf(L"0 - Sair\n");
         wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
+        getchar();
         fflush(stdin);
         switch (opc) {
             case '1':
