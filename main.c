@@ -9,7 +9,9 @@
 
 // BIBLIOTECAS
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include <locale.h>
 #include "clientes.h"
 #include "receitas.h"
@@ -90,8 +92,9 @@ void sobre(void) {
     wprintf(L"\nstema de Gestão de finanças pessoais, que visa auxiliar os usuários a gerenciarem melhor suas finanças. Desenvolvido por");
     wprintf(L"\n@fel-ps, discente em Sistemas de Informação - UFRN. Bases utilizadas para desenvolver o projeto estao localizadas nos se"); 
     wprintf(L"\nguintes endereços:\n");
-    wprintf(L"\nENDEREÇO GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git\n");
-    wprintf(L"ENDEREÇO REPLIT: https://replit.com/@aronsilvagm/GestaoDefinancas4#main.py\n");
+    wprintf(L"\nENDEREÇO GITHUB: https://github.com/FlaviusGorgonio/LinguaSolta.git \n");
+    wprintf(L"ENDEREÇO REPLIT: https://replit.com/@aronsilvagm/GestaoDefinancas4#main.py \n");
+    wprintf(L"ENDEREÇO GITHUB: https://github.com/mts-lucas/SIG-Finance \n");
     wprintf(L"\n");
     wprintf(L"\t\t\t\t\t>>> Tecle <ENTER> para continuar...\n");
 }
