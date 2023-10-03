@@ -128,9 +128,6 @@ void ler_nome(char *name)
 // VALIDAR LETRAS https://github.com/mts-lucas
 int validar_letras(char *nome, int tam)
 {
-    if (tam < 3){
-        return 0;
-    }
     if (nome[0] == ' '){
         return 0;
     }
@@ -139,15 +136,32 @@ int validar_letras(char *nome, int tam)
             // Se for um espaço em branco, continue verificando os próximos caracteres
             continue;
         }
-        if (((nome[i] <= 'z') && (nome[i] >= 'A'))) {
-            if (((nome[i] > 'Z') && (nome[i] < 'a'))) {
+        
+        if (((nome[i] <= 'z') && (nome[i] >= 'A')) || (eh_letra_acentuada(nome[i]))) {
+            if (((nome[i] > 'Z') && (nome[i] < 'a')) && (!(eh_letra_acentuada(nome[i])))) {
                 return 0;
             }
-        } else {
+        } 
+        else {
             return 0;
         }
     }
     return 1;
+}
+
+// ACEITA LETRA ACENTUADA https://github.com/Claudio-Arauj
+int eh_letra_acentuada(char c)
+{ // Claúdio Pereira e Matheus Diniz Fernandes
+  char letras_acentuadas[] = "ÁÀÂÃÉÈÊÍÌÎÓÒÔÕÚÙÛÇáàâãéèêíìîóòôõúùûç";
+  int tam = strlen(letras_acentuadas);
+    
+  for (int j = 0; j < tam; j++) {
+    if (c == letras_acentuadas[j]) {
+      return 1; // Caso encontre validação retorna True
+    }
+  }
+    
+  return 0;
 }
 
 // LER TELEFONE GPT
