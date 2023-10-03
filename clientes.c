@@ -52,14 +52,19 @@ void modulo_cliente(void){
 
 // FUNÇÕES DE CLIENTES
 void cadastrar_cliente(void){
+
+    char cpf[12];
+    char name[51];
+    char telefone[16];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"====== Cadastrar Cliente ======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Nome:\n");
-    wprintf(L"CPF:\n");
-    wprintf(L"Telefone:\n");
+    ler_nome(name);
+    ler_cpf(cpf);
+    ler_telefone(telefone);
     wprintf(L"Endereço:\n");
 }
 
