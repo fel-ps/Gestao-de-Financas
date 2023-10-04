@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <time.h>
 #include "funcoes.h"
 
@@ -177,15 +178,16 @@ void ler_telefone(char *telefone)
 // VALIDA TELEFONE GPT
 int validaTelefone(char *telefone) // Apenas Brasil
 {
-    int tamanho = strlen(telefone);
-    int digitos = 0;
-
     // Remove o '\n' do final da string (se existir)
     if (telefone[strlen(telefone) - 1] == '\n')
     {
         telefone[strlen(telefone) - 1] = '\0';
     }
+
+    int tamanho = strlen(telefone);
+    int digitos = 0;
     
+
     // Verifica se o tamanho está dentro do intervalo [min, max]
     int min = 10;
     int max = 15;
@@ -202,18 +204,16 @@ int validaTelefone(char *telefone) // Apenas Brasil
     // Verifica se todos os caracteres são dígitos ou separadores
     for (int i = 0; i < tamanho; i++) 
     {
+        if (i != 0 && i != 3)
+        {
+            if (!isdigit(telefone[i]) && (telefone[i] != ' ') && (telefone[i] != '-'))
+            {
+                return 0;
+            }
+        }
         if ((telefone[i] >= '0' && telefone[i] <= '9') || (telefone[i] != ' ' && telefone[i] != '-')) 
         {
             digitos++;
-        } 
-        else if (i == 0 || i == 3) 
-        {
-            if (telefone[i] != '(' || telefone[i+4] != ')') {
-                return 0; // Parênteses do DDD na posição incorreta
-            }
-           else {
-                return 0; // Contém caracteres inválidos
-           }
         }
     }
 
