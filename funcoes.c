@@ -30,7 +30,7 @@ struct tm obterDataAtual()
 }
 
 // VALIDAR CPF https://github.com/mts-lucas
-char verificarcpf(char *cpf, int tam)
+int verificarcpf(char *cpf, int tam)
 {
     if (tam < 11)
     {

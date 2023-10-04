@@ -4,7 +4,7 @@ void invalido(void);
 
 struct tm obterDataAtual();
 
-char verificarcpf(char *cpf, int tam);
+int verificarcpf(char *cpf, int tam);
 void ler_cpf(char *cpf);
 
 void ler_nome(char *name);
