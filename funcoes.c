@@ -109,6 +109,7 @@ void ler_cpf(char *cpf)
     do
     {
         wprintf(L"Informe o CPF do cliente(apenas números): "); scanf("%s", cpf);
+        getchar();
         fflush(stdin);
         tam = strlen(cpf);
     } while (!(verificarcpf(cpf, tam)));
@@ -121,6 +122,7 @@ void ler_nome(char *name)
     do
     {
         wprintf(L"\nInforme o nome do cliente: "); scanf("%[^\n]%*c", name);
+        getchar();
         fflush(stdin);
         tam = strlen(name);
     } while (!(validar_letras(name, tam)));
@@ -171,6 +173,7 @@ void ler_telefone(char *telefone)
     do
     {
         wprintf(L"Digite o número de telefone(Ex: (99)91234-5678): "); scanf("%[^\n]%*c", telefone);
+        getchar();
         fflush(stdin);
     } while (!(validaTelefone(telefone)));
 }
