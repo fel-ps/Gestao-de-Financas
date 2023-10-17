@@ -56,6 +56,7 @@ void cadastrar_cliente(void){
     char cpf[12];
     char name[51];
     char telefone[16];
+    double saldo;
 
     system("clear||cls");
     wprintf(L"===============================\n");
@@ -65,32 +66,41 @@ void cadastrar_cliente(void){
     ler_nome(name);
     ler_cpf(cpf);
     ler_telefone(telefone);
-    wprintf(L"Endereço:\n");
+    w_saldo(&saldo);
 }
 
 void pesquisar_cliente(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"====== Pesquisar Cliente ======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o CPF:\n");
+    ler_cpf(cpf);
 }
 
 void editar_cliente(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"======== Editar Cliente =======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o CPF:\n");
+    ler_cpf(cpf);
 }
 
 void excluir_cliente(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"======= Excluir Cliente =======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o CPF:\n");
+    ler_cpf(cpf);
 }

@@ -229,3 +229,50 @@ int validaTelefone(char *telefone) // Apenas Brasil
     return 1;
 }
 
+// VALIDA PREÇO https://github.com/EL0ISA/CGmotel/blob/main/uteis.c
+int verif_saldo(char* csaldo){
+    int tam=strlen(csaldo);
+    int contPonto=0,ponto=0, p_ponto=0;
+    if(tam>20){
+        return 0;
+    }
+    for (int i = 0; i < tam; i++)
+    {
+        if(!isdigit(csaldo[i]) && csaldo[i]!='.'){
+            return 0;
+        }
+        if(ispunct(csaldo[i])){
+            contPonto++;
+        }
+    }
+    if(contPonto>1){
+        return 0;
+    }else if(contPonto==1){
+        for (int i = 0; csaldo[i]!='.'; i++){
+            ponto++;
+        }
+        for (int i = (ponto); i<tam; i++){
+            p_ponto++;
+        }
+        if((p_ponto-1)>2){
+            return 0;
+        }
+    }
+   return 1; 
+}
+
+// VALIDA PREÇO https://github.com/EL0ISA/CGmotel/blob/main/uteis.c
+double* w_saldo(double*saldo){
+    int valido;
+    char csaldo[20];
+    do
+    {
+        wprintf(L"Digite um saldo inicial(0.00$): ");
+        scanf("%[^\n]",csaldo);
+        fflush(stdin);
+        valido=verif_saldo(csaldo);
+    } while (valido!=1);
+    double vfloat=atof(csaldo);
+    *saldo=vfloat;
+    return saldo;
+}

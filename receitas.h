@@ -1,3 +1,10 @@
+// STRUCT DE RECEITAS
+
+typedef struct receitas {
+    char cpf[12];
+    char receitatext[500];
+} RECEITA;
+
 // ASSINATURAS RECEITAS
 
 void modulo_receita(void);

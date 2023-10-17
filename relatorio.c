@@ -34,11 +34,14 @@ void modulo_relatorio(void){
 
 // FUNÇÃO DE RELATÓRIO
 void relatar_saldo(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"================================\n");
     wprintf(L"====== Relatório de Saldo ======\n");
     wprintf(L"================================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o seu CPF:\n");
+    ler_cpf(cpf);
     // MOSTRAR SALDO
 }

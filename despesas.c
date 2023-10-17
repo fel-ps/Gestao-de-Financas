@@ -52,42 +52,56 @@ void modulo_despesa(void){
 
 // FUNÇÕES DE DESPESAS
 void cadastrar_despesa(void){
+
+    char cpf[12];
+    //char despesatext[500];
+    //double despesa;
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"====== Cadastrar Despesa ======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o seu CPF:\n");
+    ler_cpf(cpf);
     wprintf(L"Digite o valor($) da despesa:\n");
     wprintf(L"Informe em que foi gasto o valor informado:\n");
 }
 
 void pesquisar_despesa(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"====== Pesquisar Despesa ======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o seu CPF:\n");
+    ler_cpf(cpf);
     // LISTAR DESPESAS
 }
 
 void editar_despesa(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"======== Editar Despesa =======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o seu CPF:\n");
+    ler_cpf(cpf);
     // LISTAR DESPESAS
 }
 
 void excluir_despesa(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"======= Excluir Despesa =======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o seu CPF:\n");
+    ler_cpf(cpf);
     // LISTAR DESPESAS
 }

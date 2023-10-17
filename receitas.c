@@ -52,42 +52,56 @@ void modulo_receita(void){
 
 // FUNÇÕES DE RECEITAS
 void cadastrar_receita(void){
+
+    char cpf[12];
+    //char receitatext[500];
+    //double receita;
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"====== Cadastrar Receita ======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o seu CPF:\n");
+    ler_cpf(cpf);
     wprintf(L"Digite o valor($) da receita:\n");
     wprintf(L"Informe de onde foi apurado esse valor:\n");
 }
 
 void pesquisar_receita(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"====== Pesquisar Receita ======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o seu CPF:\n");
+    ler_cpf(cpf);
     // LISTAR DESPESAS
 }
 
 void editar_receita(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"======== Editar Receita =======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o seu CPF:\n");
+    ler_cpf(cpf);
     // LISTAR DESPESAS
 }
 
 void excluir_receita(void){
+
+    char cpf[12];
+
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"======= Excluir Receita =======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    wprintf(L"Digite o seu CPF:\n");
+    ler_cpf(cpf);
     // LISTAR DESPESAS
 }
