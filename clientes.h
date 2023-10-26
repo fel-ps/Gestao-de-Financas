@@ -4,6 +4,7 @@ typedef struct clientes {
     char cpf[12];
     char nome[51];
     char telefone[16];
+    double saldo;
 } Cliente;
 
 // ASSINATURAS CLIENTES
