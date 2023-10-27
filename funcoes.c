@@ -173,7 +173,7 @@ void ler_telefone(char *telefone)
 {
     do
     {
-        wprintf(L"Digite o número de telefone(Ex: (99)91234-5678): "); scanf("%[^\n]%*c", telefone);
+        wprintf(L"Digite um número de telefone(Ex: (99)91234-5678): "); scanf("%[^\n]%*c", telefone);
         getchar();
         fflush(stdin);
     } while (!(validaTelefone(telefone)));
@@ -268,8 +268,8 @@ double* w_saldo(double*saldo){
     char csaldo[20];
     do
     {
-        wprintf(L"Digite um saldo inicial(0.00$): ");
-        scanf("%[^\n]",csaldo);
+        wprintf(L"Digite um saldo inicial da sua poupança(0.00$): "); scanf("%[^\n]",csaldo);
+        getchar();
         fflush(stdin);
         valido=verif_saldo(csaldo);
     } while (valido!=1);
