@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <time.h>
+#include <wchar.h>
 #include "funcoes.h"
 
 // INVÁLIDO

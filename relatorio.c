@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <wchar.h>
 #include "relatorio.h"
 #include "variaveis.h"
 #include "funcoes.h"
