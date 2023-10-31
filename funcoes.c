@@ -5,6 +5,7 @@
 #include <time.h>
 #include <wchar.h>
 #include "funcoes.h"
+#include "clientes.h"
 
 // INVÁLIDO
 void invalido(void) {
@@ -109,8 +110,7 @@ void ler_cpf(char *cpf)
     int tam;
     do
     {
-        wprintf(L"Informe o CPF do cliente(apenas números): "); scanf("%s", cpf);
-        getchar();
+        wprintf(L"Informe o CPF do cliente(apenas números): "); scanf("%[^\n]%*c", cpf);
         fflush(stdin);
         tam = strlen(cpf);
     } while (!(verificarcpf(cpf, tam)));
@@ -122,8 +122,7 @@ void ler_nome(char *name)
     int tam;
     do
     {
-        wprintf(L"\nInforme o nome do cliente: "); scanf("%[^\n]%*c", name);
-        getchar();
+        wprintf(L"Informe o nome do cliente: "); scanf("%[^\n]%*c", name);
         fflush(stdin);
         tam = strlen(name);
     } while (!(validar_letras(name, tam)));
@@ -174,7 +173,6 @@ void ler_telefone(char *telefone)
     do
     {
         wprintf(L"Digite um número de telefone(Ex: (99)91234-5678): "); scanf("%[^\n]%*c", telefone);
-        getchar();
         fflush(stdin);
     } while (!(validaTelefone(telefone)));
 }
@@ -269,7 +267,6 @@ double* w_saldo(double*saldo){
     do
     {
         wprintf(L"Digite um saldo inicial da sua poupança(0.00$): "); scanf("%[^\n]",csaldo);
-        getchar();
         fflush(stdin);
         valido=verif_saldo(csaldo);
     } while (valido!=1);
@@ -277,3 +274,7 @@ double* w_saldo(double*saldo){
     *saldo=vfloat;
     return saldo;
 }
+
+
+
+

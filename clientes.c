@@ -54,20 +54,28 @@ void modulo_cliente(void){
 // FUNÇÕES DE CLIENTES
 void cadastrar_cliente(void){
 
-    char cpf[12];
-    char name[51];
-    char telefone[16];
-    double saldo;
+    FILE* fp;
+    Cliente* cliente;
+    printf("Exemplo com Arquivo Binário\n");
+    fp = fopen("clientes.dat","ab");
+    if (fp == NULL) {
+        fp = fopen("clientes.dat", "wb");
+        if (fp == NULL) {
+            wprintf(L"\nErro na criação");
+            exit(1);
+        }
+    }
 
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"====== Cadastrar Cliente ======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    ler_nome(name);
-    ler_cpf(cpf);
-    ler_telefone(telefone);
-    w_saldo(&saldo);
+    cliente = preenche_Cliente();
+    fwrite(cliente, sizeof(Cliente), 1, fp);
+    fclose(fp);
+    free(cliente);
+
 }
 
 void pesquisar_cliente(void){
@@ -104,4 +112,17 @@ void excluir_cliente(void){
     wprintf(L"===============================\n");
     wprintf(L"\n");
     ler_cpf(cpf);
+}
+
+Cliente* preenche_Cliente(void) {
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+
+    ler_nome(cl->nome);
+    ler_cpf(cl->cpf);
+    ler_telefone(cl->telefone);
+    w_saldo(&cl->saldo);
+
+    //cl->status = 'o';
+    return cl;
 }
