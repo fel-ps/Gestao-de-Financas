@@ -29,8 +29,6 @@ void modulo_cliente(void){
                 break;
             case '2':
                 pesquisar_cliente();
-                getchar();
-                fflush(stdin);
                 break;
             case '3':
                 editar_cliente();
@@ -82,18 +80,6 @@ void cadastrar_cliente(void){
 
 }
 
-void pesquisar_cliente(void){
-
-    char cpf[12];
-
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"====== Pesquisar Cliente ======\n");
-    wprintf(L"===============================\n");
-    wprintf(L"\n");
-    ler_cpf(cpf);
-}
-
 void editar_cliente(void){
 
     char cpf[12];
@@ -142,9 +128,33 @@ void listar_clientes(void){
     free(cl);
     fclose(fp);
 
-
-    
 }
+
+void pesquisar_cliente(void){
+
+    char pcpf[12];
+    wprintf(L"\nDigite o CPF do cliente: "); scanf("%[^\n]%*c", pcpf);
+    fflush(stdin);
+
+    Cliente* clienteEncontrado = buscarClientePorCPF(pcpf);
+
+    if (clienteEncontrado != NULL) {
+        wprintf(L"\n= = = Cliente Encontrado = = =\n");
+        wprintf(L"Nome: %s\n", clienteEncontrado->nome);
+        wprintf(L"CPF: %s\n", clienteEncontrado->cpf);
+        wprintf(L"Telefone: %s\n", clienteEncontrado->telefone);
+        wprintf(L"Saldo(R$): %.2f\n", clienteEncontrado->saldo);
+        free(clienteEncontrado);
+    } else {
+        wprintf(L"\nCliente não encontrado.");
+    }
+
+    wprintf(L"\nTecle <ENTER> para continuar...\n");
+    getchar();
+    fflush(stdin);
+
+}
+
 
 // CADASTRA CLIENTE
 Cliente* preenche_Cliente(void) 
@@ -174,7 +184,31 @@ void exibe_Clientes(Cliente* cl, int c)
         wprintf(L"Nome: %s\n", cl->nome);
         wprintf(L"CPF: %s\n", cl->cpf);
         wprintf(L"Telefone: %s\n", cl->telefone);
-        wprintf(L"Saldo: %.2f\n", cl->saldo);
+        wprintf(L"Saldo(R$): %.2f\n", cl->saldo);
     }
 
+}
+
+// BUSCAR CLIENTE
+Cliente* buscarClientePorCPF(char* cpf){
+
+    FILE* fp;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
+    while (fread(cl, sizeof(Cliente), 1, fp)) {
+        if (strcmp(cl->cpf, cpf) == 0) {
+            fclose(fp);
+            return cl;
+        }
+    }
+
+    fclose(fp);
+    free(cl);
+    return NULL;
 }

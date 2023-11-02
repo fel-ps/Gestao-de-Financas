@@ -20,3 +20,4 @@ void listar_clientes(void);
 
 Cliente* preenche_Cliente(void);
 void exibe_Clientes(Cliente*, int c);
+Cliente* buscarClientePorCPF(char* cpf);
