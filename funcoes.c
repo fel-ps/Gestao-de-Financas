@@ -199,7 +199,7 @@ int validaTelefone(char *telefone) // Apenas Brasil
         return 0; // Tamanho inválido
     }
 
-    if (telefone[0] != '(' && telefone[3] != ')')
+    if (telefone[0] != '(' || telefone[3] != ')')
     {
         return 0; // Parênteses do DDD na posição incorreta
     }
