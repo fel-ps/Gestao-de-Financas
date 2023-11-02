@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <wchar.h>
 #include "clientes.h"
@@ -17,6 +18,7 @@ void modulo_cliente(void){
         wprintf(L"2 - Pesquisar Cliente\n");
         wprintf(L"3 - Editar Cliente\n");
         wprintf(L"4 - Excluir Cliente\n");
+        wprintf(L"5 - Listar Clientes\n");
         wprintf(L"0 - Sair\n");
         wprintf(L"\nDigite o que deseja fazer: "); scanf("%s", &opc);
         getchar();
@@ -24,8 +26,6 @@ void modulo_cliente(void){
         switch (opc) {
             case '1':
                 cadastrar_cliente();
-                getchar();
-                fflush(stdin);
                 break;
             case '2':
                 pesquisar_cliente();
@@ -42,6 +42,8 @@ void modulo_cliente(void){
                 getchar();
                 fflush(stdin);
                 break;
+            case '5':
+                listar_clientes();
             case '0':
                 break;
             default:
@@ -54,27 +56,29 @@ void modulo_cliente(void){
 // FUNÇÕES DE CLIENTES
 void cadastrar_cliente(void){
 
-    FILE* fp;
-    Cliente* cliente;
-    printf("Exemplo com Arquivo Binário\n");
-    fp = fopen("clientes.dat","ab");
-    if (fp == NULL) {
-        fp = fopen("clientes.dat", "wb");
-        if (fp == NULL) {
-            wprintf(L"\nErro na criação");
-            exit(1);
-        }
-    }
-
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"====== Cadastrar Cliente ======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
+
+    FILE* fp;
+    Cliente* cliente;
+    fp = fopen("clientes.dat","ab");
+    if (fp == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
     cliente = preenche_Cliente();
     fwrite(cliente, sizeof(Cliente), 1, fp);
     fclose(fp);
     free(cliente);
+
+    wprintf(L"\nCliente Cadastrado!");
+    wprintf(L"\nTecle <ENTER> para continuar...\n");
+    getchar();
+    fflush(stdin);
 
 }
 
@@ -114,7 +118,37 @@ void excluir_cliente(void){
     ler_cpf(cpf);
 }
 
-Cliente* preenche_Cliente(void) {
+void listar_clientes(void){
+
+    FILE* fp;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
+    int c = 1;
+    while(fread(cl,sizeof(Cliente), 1, fp)){
+        exibe_Clientes(cl, c);
+        c++;
+    }
+
+    wprintf(L"\nTecle <ENTER> para continuar...\n");
+    getchar();
+    fflush(stdin);
+
+    free(cl);
+    fclose(fp);
+
+
+    
+}
+
+// CADASTRA CLIENTE
+Cliente* preenche_Cliente(void) 
+{
     Cliente* cl;
     cl = (Cliente*) malloc(sizeof(Cliente));
 
@@ -122,7 +156,25 @@ Cliente* preenche_Cliente(void) {
     ler_cpf(cl->cpf);
     ler_telefone(cl->telefone);
     w_saldo(&cl->saldo);
+    cl->status = 'a';
 
-    //cl->status = 'o';
     return cl;
+}
+
+// EXIBIR TODOS OS CLIENTES
+void exibe_Clientes(Cliente* cl, int c)
+{
+
+    if ((cl == NULL) || (cl->status == 'x')) {
+        wprintf(L"\n= = = Clientes Inexistentes = = =\n");
+    } 
+    else 
+    {
+        wprintf(L"\n= = = Cliente %d = = =\n", c);
+        wprintf(L"Nome: %s\n", cl->nome);
+        wprintf(L"CPF: %s\n", cl->cpf);
+        wprintf(L"Telefone: %s\n", cl->telefone);
+        wprintf(L"Saldo: %.2f\n", cl->saldo);
+    }
+
 }

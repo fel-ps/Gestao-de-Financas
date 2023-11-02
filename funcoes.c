@@ -18,17 +18,18 @@ void invalido(void) {
 }
 
 // TIME_ATUAL CHAT GPT
-struct tm obterDataAtual() 
-{
+void obterDataAtual(char *data) {
     time_t t;
     struct tm *info;
 
     time(&t);
     info = localtime(&t);
 
-    return *info;
- // struct tm dataAtual = obterDataAtual();
- // wprintf(L"Data atual: %02d/%02d/%04d\n", dataAtual.tm_mday, dataAtual.tm_mon + 1, dataAtual.tm_year + 1900);
+    strftime(data, 11, "%d/%m/%Y", info);
+
+    //char dataAtual[11];
+    //obterDataAtual(dataAtual);
+    //wprintf(L"Data atual: %s\n", dataAtual);
 }
 
 // VALIDAR CPF https://github.com/mts-lucas
@@ -246,7 +247,7 @@ int verif_saldo(char* csaldo){
     }
     if(contPonto>1){
         return 0;
-    }else if(contPonto==1){
+    } else if(contPonto==1){
         for (int i = 0; csaldo[i]!='.'; i++){
             ponto++;
         }

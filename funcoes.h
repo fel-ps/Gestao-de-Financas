@@ -2,7 +2,7 @@
 
 void invalido(void);
 
-struct tm obterDataAtual();
+void obterDataAtual(char *data);
 
 int verificarcpf(char *cpf, int tam);
 void ler_cpf(char *cpf);
