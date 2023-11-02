@@ -19,5 +19,6 @@ void excluir_cliente(void);
 void listar_clientes(void);
 
 Cliente* preenche_Cliente(void);
-void exibe_Clientes(Cliente*, int c);
+void exibe_Clientes(Cliente*, int *c);
 Cliente* buscarClientePorCPF(char* cpf);
+void excluirClientePorCPF(char* cpf);

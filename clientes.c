@@ -37,8 +37,6 @@ void modulo_cliente(void){
                 break;
             case '4':
                 excluir_cliente();
-                getchar();
-                fflush(stdin);
                 break;
             case '5':
                 listar_clientes();
@@ -94,14 +92,12 @@ void editar_cliente(void){
 
 void excluir_cliente(void){
 
-    char cpf[12];
+    char ecpf[12];
+    wprintf(L"\nDigite o CPF do cliente a ser excluido: "); scanf("%[^\n]%*c", ecpf);
+    fflush(stdin);
 
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"======= Excluir Cliente =======\n");
-    wprintf(L"===============================\n");
-    wprintf(L"\n");
-    ler_cpf(cpf);
+    excluirClientePorCPF(ecpf);
+
 }
 
 void listar_clientes(void){
@@ -117,8 +113,7 @@ void listar_clientes(void){
 
     int c = 1;
     while(fread(cl,sizeof(Cliente), 1, fp)){
-        exibe_Clientes(cl, c);
-        c++;
+        exibe_Clientes(cl, &c); 
     }
 
     wprintf(L"\nTecle <ENTER> para continuar...\n");
@@ -155,7 +150,6 @@ void pesquisar_cliente(void){
 
 }
 
-
 // CADASTRA CLIENTE
 Cliente* preenche_Cliente(void) 
 {
@@ -172,19 +166,21 @@ Cliente* preenche_Cliente(void)
 }
 
 // EXIBIR TODOS OS CLIENTES
-void exibe_Clientes(Cliente* cl, int c)
+void exibe_Clientes(Cliente* cl, int *c)
 {
-
-    if ((cl == NULL) || (cl->status == 'x')) {
-        wprintf(L"\n= = = Clientes Inexistentes = = =\n");
-    } 
-    else 
-    {
-        wprintf(L"\n= = = Cliente %d = = =\n", c);
+    //  ((cl == NULL) || (cl->status == 'x')) 
+    if (cl->status != 'x') {
+        wprintf(L"\n= = = Cliente %d = = =\n", *c);
         wprintf(L"Nome: %s\n", cl->nome);
         wprintf(L"CPF: %s\n", cl->cpf);
         wprintf(L"Telefone: %s\n", cl->telefone);
         wprintf(L"Saldo(R$): %.2f\n", cl->saldo);
+        (*c)++; 
+    } else if(cl->status == 'x'){
+        return;
+    }
+    else {
+        wprintf(L"\n= = = Clientes Inexistentes = = =\n");
     }
 
 }
@@ -202,7 +198,7 @@ Cliente* buscarClientePorCPF(char* cpf){
     }
 
     while (fread(cl, sizeof(Cliente), 1, fp)) {
-        if (strcmp(cl->cpf, cpf) == 0) {
+        if ((strcmp(cl->cpf, cpf) == 0) && (cl->status != 'x')) {
             fclose(fp);
             return cl;
         }
@@ -211,4 +207,41 @@ Cliente* buscarClientePorCPF(char* cpf){
     fclose(fp);
     free(cl);
     return NULL;
+}
+
+// EXCLUIR CLIENTE
+void excluirClientePorCPF(char* cpf) {
+
+    FILE* fp;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb+");
+    if (fp == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
+    while (fread(cl, sizeof(Cliente), 1, fp)) {
+        if (strcmp(cl->cpf, cpf) == 0) {
+            cl->status = 'x';
+            fseeko(fp, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+            fwrite(cl, sizeof(Cliente), 1, fp);
+            wprintf(L"\nCliente excluído.\n");
+            wprintf(L"\nTecle <ENTER> para continuar...\n");
+            getchar();
+            fflush(stdin);
+
+            free(cl);
+            fclose(fp);
+            return;
+        }
+    }
+
+    free(cl);
+    fclose(fp);
+    wprintf(L"\nCliente não encontrado.\n");
+
+    wprintf(L"\nTecle <ENTER> para continuar...\n");
+    getchar();
+    fflush(stdin);
 }
