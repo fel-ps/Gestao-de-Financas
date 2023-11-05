@@ -36,8 +36,6 @@ void modulo_receita(void){
                 break;
             case '4':
                 excluir_receita();
-                getchar();
-                fflush(stdin);
                 break;
             case '0':
                 break;
@@ -92,15 +90,17 @@ void editar_receita(void){
 
 void excluir_receita(void){
 
-    char cpf[12];
+    char datainfo[11];
+    char ecpf[12];
+    int number;
+    wprintf(L"\nDigite o CPF do cliente cuja a receita pertence(Apenas números): "); scanf("%[^\n]%*c", ecpf);
+    fflush(stdin);
+    wprintf(L"Digite a data da receita que deseja excluir(xx/yy/zzzz): "); scanf("%[^\n]%*c", datainfo);
+    fflush(stdin);
+    wprintf(L"Digite a numeração dela: "); scanf("%d", &number);
+    fflush(stdin);
 
-    system("clear||cls");
-    wprintf(L"===============================\n");
-    wprintf(L"======= Excluir Receita =======\n");
-    wprintf(L"===============================\n");
-    wprintf(L"\n");
-    ler_cpf(cpf);
-    // LISTAR DESPESAS
+    excluirReceita(ecpf, datainfo, number);
 }
 
 void listar_receitas(void){
@@ -115,7 +115,7 @@ void listar_receitas(void){
     }
 
     char icpf[12];
-    wprintf(L"\nDigite o CPF do cliente: "); scanf("%[^\n]%*c", icpf);
+    wprintf(L"\nDigite o CPF do cliente(Apenas números): "); scanf("%[^\n]%*c", icpf);
     fflush(stdin);
     while(fread(rc, sizeof(RECEITA), 1, fp)){
         exibe_receitas(rc, icpf);
@@ -164,3 +164,40 @@ void exibe_receitas(RECEITA* rc, char *icpf)
         return;
     }
 } 
+
+// EXCLUIR RECEITA
+void excluirReceita(char* cpf, char* datainfo, int number) {
+
+    FILE* fp;
+    RECEITA* rc;
+    rc = (RECEITA*) malloc(sizeof(RECEITA));
+    fp = fopen("receitas.dat", "rb+");
+    if (fp == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
+    while (fread(rc, sizeof(RECEITA), 1, fp)) {
+        if ((strcmp(rc->cpf, cpf) == 0) && (strcmp(rc->data, datainfo) == 0) && (rc->id == number))  {
+            rc->status = 'x';
+            fseeko(fp, -1*(off_t)sizeof(RECEITA), SEEK_CUR);
+            fwrite(rc, sizeof(RECEITA), 1, fp);
+            wprintf(L"\nReceita excluída.\n");
+            wprintf(L"\nTecle <ENTER> para continuar...\n");
+            getchar();
+            fflush(stdin);
+
+            free(rc);
+            fclose(fp);
+            return;
+        }
+    }
+
+    free(rc);
+    fclose(fp);
+    wprintf(L"\nReceita não encontrado.\n");
+
+    wprintf(L"\nTecle <ENTER> para continuar...\n");
+    getchar();
+    fflush(stdin);
+}

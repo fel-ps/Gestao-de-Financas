@@ -20,3 +20,4 @@ void listar_receitas(void);
 
 RECEITA* preenche_receita(void);
 void exibe_receitas(RECEITA* rc, char *icpf);
+void excluirReceita(char* cpf, char* datainfo, int number);
