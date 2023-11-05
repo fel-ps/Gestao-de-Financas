@@ -123,7 +123,7 @@ void ler_nome(char *name)
     int tam;
     do
     {
-        wprintf(L"Informe o nome do cliente: "); scanf("%[^\n]%*c", name);
+        wprintf(L"Informe o nome do cliente(sem acentuação): "); scanf("%[^\n]%*c", name);
         fflush(stdin);
         tam = strlen(name);
     } while (!(validar_letras(name, tam)));
