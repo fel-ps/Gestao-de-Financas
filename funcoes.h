@@ -17,3 +17,4 @@ int validaTelefone(char *telefone);
 int verif_csaldo(char* csaldo);
 double* w_saldo(double*saldo);
 
+int verifica_existe_cliente(char* cpf);

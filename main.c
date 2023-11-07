@@ -15,6 +15,7 @@
 #include <time.h>
 #include <locale.h>
 #include <wchar.h>
+#include <stdbool.h>
 #include "clientes.h"
 #include "receitas.h"
 #include "despesas.h"

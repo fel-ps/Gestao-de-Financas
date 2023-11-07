@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <wchar.h>
+#include <stdbool.h>
 #include "despesas.h"
 #include "variaveis.h"
 #include "funcoes.h"
@@ -134,7 +135,18 @@ DESPESA* preenche_despesa(void)
     DESPESA* ds;
     ds = (DESPESA*) malloc(sizeof(DESPESA));
 
-    ler_cpf(ds->cpf);
+    bool v = true, f = false;
+    char c;
+
+    while(v) {
+        ler_cpf(ds->cpf);
+        c = verifica_existe_cliente(ds->cpf);
+        if (c != 1) {
+            v = f;  
+        } else {
+            wprintf(L"\nEste cliente ainda não foi cadastrado em nosso sistema\n!");
+        }
+    }
     wprintf(L"Digite um pequeno texto sobre a origem da desta receita(sem acentuação): "); scanf("%[^\n]%*c", ds->despesatext);
     fflush(stdin);
     w_saldo(&ds->despesasaldo);

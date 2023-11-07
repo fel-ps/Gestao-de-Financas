@@ -2,9 +2,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <wchar.h>
+#include <stdbool.h>
 #include "clientes.h"
 #include "variaveis.h"
 #include "funcoes.h"
+
 
 // VARIÁVEIS
 
@@ -156,8 +158,19 @@ Cliente* preenche_Cliente(void)
     Cliente* cl;
     cl = (Cliente*) malloc(sizeof(Cliente));
 
+    bool v = true, f = false;
+    char c;
+
+    while(v) {
+        ler_cpf(cl->cpf);
+        c = verifica_existe_cliente(cl->cpf);
+        if (c == 1) {
+            v = f;  
+        } else {
+            wprintf(L"\nCliente já cadastrado com esse cpf!\n");
+        }
+    }
     ler_nome(cl->nome);
-    ler_cpf(cl->cpf);
     ler_telefone(cl->telefone);
     w_saldo(&cl->saldo);
     cl->status = 'a';

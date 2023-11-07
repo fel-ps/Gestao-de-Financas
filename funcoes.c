@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <time.h>
 #include <wchar.h>
+#include <stdbool.h>
 #include "funcoes.h"
 #include "clientes.h"
 
@@ -276,6 +277,28 @@ double* w_saldo(double*saldo){
     return saldo;
 }
 
+// Verificar se o cliente já existe no sistema
+// Evitar cpf iguais https://github.com/Matheusdnf/projeto_horarios_de_aula/blob/main/aluno.c
+int verifica_existe_cliente(char* cpf){
 
+    FILE* fp;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
+    while(fread(cl, sizeof(Cliente), 1, fp)) {
+        if ((strcmp(cl->cpf, cpf) == 0) && (cl->status != 'x')) {
+            return 0;
+        }
+    }
+
+    fclose(fp);
+    free(cl);
+    return 1;
+}
 
 
