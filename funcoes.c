@@ -269,6 +269,7 @@ double* w_saldo(double*saldo){
     do
     {
         wprintf(L"Digite um saldo(0.00$): "); scanf("%[^\n]",csaldo);
+        getchar();
         fflush(stdin);
         valido=verif_saldo(csaldo);
     } while (valido!=1);
