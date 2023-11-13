@@ -34,8 +34,6 @@ void modulo_cliente(void){
                 break;
             case '3':
                 editar_cliente();
-                getchar();
-                fflush(stdin);
                 break;
             case '4':
                 excluir_cliente();
@@ -80,16 +78,77 @@ void cadastrar_cliente(void){
 
 }
 
+// EDITAR CLIENTE
+// https://github.com/EL0ISA/CGmotel/blob/main/cliente.c#L146
 void editar_cliente(void){
 
     char cpf[12];
+    int opcc = -1;
+
+    FILE* fp;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "r+b");
+    if (fp == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
 
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"======== Editar Cliente =======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
+
     ler_cpf(cpf);
+    if(verifica_existe_cliente(cpf) == 0) 
+    {
+        while(fread(cl,sizeof(Cliente), 1, fp)) 
+        {
+            if (strcmp(cl->cpf, cpf) == 0 && cl->status != 'x') 
+            {
+                do 
+                {
+                    wprintf(L"\n");
+                    wprintf(L"1 - Nome: %s\n", cl->nome);
+                    wprintf(L"1 - Nome: %s\n", cl->nome);
+                    wprintf(L"2 - Telefone: %s\n", cl->telefone);
+                    wprintf(L"3 - Saldo($): %.2f\n", cl->saldo);
+                    wprintf(L"0 - Finalizar alterações.\n");
+                    wprintf(L"\n Campo que deseja editar: "); scanf("%d",&opcc);
+                    fflush(stdin);
+                    switch (opcc) 
+                    {
+                    case 1:
+                        ler_nome(cl->nome);
+                        break;
+                    case 2:
+                        ler_telefone(cl->telefone);
+                        break;
+                    case 3:
+                        w_saldo(&cl->saldo);
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        invalido();
+                        break;
+                    }
+                    fseeko(fp, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+                    fwrite(cl, sizeof(Cliente), 1, fp);
+                } while (opcc!=0);
+                break;
+            }
+        }
+    } else{
+        wprintf(L"\nCliente não encontrado!");
+    }
+    free(cl);
+    fclose(fp);
+
+    wprintf(L"\nTecle <ENTER> para continuar...\n");
+    getchar();
+    fflush(stdin);
 }
 
 void excluir_cliente(void){
@@ -113,12 +172,15 @@ void listar_clientes(void){
         exit(1);
     }
 
-    int c = 1;
+    system("clear||cls");
+    wprintf(L"\n||     CPF     ||                     CLIENTE                       ||   SALDO   ||    TELEFONE    ||");
     while(fread(cl,sizeof(Cliente), 1, fp)){
-        exibe_Clientes(cl, &c); 
+        if(!feof(fp)) {
+            exibe_Clientes(cl);
+        } 
     }
 
-    wprintf(L"\nTecle <ENTER> para continuar...\n");
+    wprintf(L"\n\nTecle <ENTER> para continuar...\n");
     getchar();
     fflush(stdin);
 
@@ -179,16 +241,13 @@ Cliente* preenche_Cliente(void)
 }
 
 // EXIBIR TODOS OS CLIENTES
-void exibe_Clientes(Cliente* cl, int *c)
+void exibe_Clientes(Cliente* cl)
 {
     //  ((cl == NULL) || (cl->status == 'x')) 
     if (cl->status != 'x') {
-        wprintf(L"\n= = = Cliente %d = = =\n", *c);
-        wprintf(L"Nome: %s\n", cl->nome);
-        wprintf(L"CPF: %s\n", cl->cpf);
-        wprintf(L"Telefone: %s\n", cl->telefone);
-        wprintf(L"Saldo(R$): %.2f\n", cl->saldo);
-        (*c)++; 
+        wprintf(L"\n||-------------||---------------------------------------------------||-----------||----------------||");
+        wprintf(L"\n|| %-12s|| %-50s|| %-10.2F|| %-15s||", cl->cpf, cl->nome, cl->saldo, cl->telefone);
+        // wprintf(L"Saldo(R$): %.2f\n", cl->saldo);
     } else if(cl->status == 'x'){
         return;
     }
@@ -258,3 +317,6 @@ void excluirClientePorCPF(char* cpf) {
     getchar();
     fflush(stdin);
 }
+
+
+    
