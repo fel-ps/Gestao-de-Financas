@@ -32,8 +32,6 @@ void modulo_receita(void){
                 break;
             case '3':
                 editar_receita();
-                getchar();
-                fflush(stdin);
                 break;
             case '4':
                 excluir_receita();
@@ -78,15 +76,104 @@ void cadastrar_receita(void){
 
 void editar_receita(void){
 
-    char cpf[12];
+    char datainfo[11];
+    char ecpf[12];
+    int number;
+    int opcc = -1;
+    int contador = 0;
+
+    FILE* fp;
+    RECEITA* rc;
+    rc = (RECEITA*) malloc(sizeof(RECEITA));
+    fp = fopen("receitas.dat", "r+b");
+    if (fp == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
 
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"======== Editar Receita =======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    ler_cpf(cpf);
-    // LISTAR DESPESAS
+
+
+    wprintf(L"\nDigite o CPF do cliente cuja a receita pertence(Apenas números): "); scanf("%[^\n]%*c", ecpf);
+    fflush(stdin);
+    wprintf(L"Digite a data da receita que deseja editar(xx/yy/zzzz): "); scanf("%[^\n]%*c", datainfo);
+    fflush(stdin);
+    wprintf(L"Digite a numeração dela: "); scanf("%d", &number);
+    fflush(stdin);
+
+    if(verifica_existe_cliente(ecpf) == 0)
+    {
+        while(fread(rc,sizeof(RECEITA), 1, fp)) 
+        {
+            if ((strcmp(rc->cpf, ecpf) == 0) && (strcmp(rc->data, datainfo) == 0) && (rc->id == number) && (rc->status != 'x')) 
+            {
+                contador++;
+                do 
+                {
+                    system("clear||cls");
+                    wprintf(L"\n");
+                    wprintf(L"1 - CPF: %s\n", rc->cpf);
+                    wprintf(L"2 - Origem: %s\n", rc->receitatext);
+                    wprintf(L"3 - Saldo($): %.2f\n", rc->receitasaldo);
+                    wprintf(L"4 - Data: %s\n", rc->data);
+                    wprintf(L"5 - Numeração do dia: %d\n", rc->id);
+                    wprintf(L"0 - Finalizar alterações.\n");
+                    wprintf(L"\n Campo que deseja editar: "); scanf("%d",&opcc);
+                    fflush(stdin);
+                    switch (opcc) 
+                    {
+                    case 1:
+                        wprintf(L"\n");
+                        ler_cpf(rc->cpf);
+                        break;
+                    case 2:
+                        wprintf(L"\nDigite um pequeno texto sobre a origem da desta receita(sem acentuação): "); scanf("%[^\n]%*c", rc->receitatext);
+                        fflush(stdin);
+                        break;
+                    case 3:
+                        wprintf(L"\n");
+                        w_saldo(&rc->receitasaldo);
+                        break;
+                    case 4:
+                        wprintf(L"\nDigite a data de quando foi cadastrada esta receita(xx/yy/zzzz): "); scanf("%[^\n]%*c", rc->data);
+                        fflush(stdin);
+                        break;
+                    case 5:
+                        wprintf(L"\nDigite qual foi a numeração do dia desta receita(1,2,3..): "); scanf("%d", &(rc->id));
+                        fflush(stdin);
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        invalido();
+                        break;
+                    }
+                    fseeko(fp, -1*(off_t)sizeof(RECEITA), SEEK_CUR);
+                    fwrite(rc, sizeof(RECEITA), 1, fp);
+                } while (opcc!=0);
+                break;
+            }
+        }
+
+        if (contador == 0)
+        {
+            wprintf(L"\n");
+            wprintf(L"Não foi encontrado a receita informada deste cliente!");
+            wprintf(L"\nTecle <ENTER> para continuar...\n");
+            getchar();
+            fflush(stdin);
+        }
+
+    } else{
+        wprintf(L"\nCliente não encontrado!");
+        wprintf(L"\nTecle <ENTER> para continuar...\n");
+        getchar();
+        fflush(stdin);
+    }
 }
 
 void excluir_receita(void){

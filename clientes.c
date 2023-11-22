@@ -109,8 +109,8 @@ void editar_cliente(void){
             {
                 do 
                 {
+                    system("clear||cls");
                     wprintf(L"\n");
-                    wprintf(L"1 - Nome: %s\n", cl->nome);
                     wprintf(L"1 - Nome: %s\n", cl->nome);
                     wprintf(L"2 - Telefone: %s\n", cl->telefone);
                     wprintf(L"3 - Saldo($): %.2f\n", cl->saldo);
@@ -120,12 +120,15 @@ void editar_cliente(void){
                     switch (opcc) 
                     {
                     case 1:
+                        wprintf(L"\n");
                         ler_nome(cl->nome);
                         break;
                     case 2:
+                        wprintf(L"\n");
                         ler_telefone(cl->telefone);
                         break;
                     case 3:
+                        wprintf(L"\n");
                         w_saldo(&cl->saldo);
                         break;
                     case 0:

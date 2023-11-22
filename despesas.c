@@ -32,8 +32,6 @@ void modulo_despesa(void){
                 break;
             case '3':
                 editar_despesa();
-                getchar();
-                fflush(stdin);
                 break;
             case '4':
                 excluir_despesa();
@@ -103,15 +101,104 @@ void listar_despesas(void){
 
 void editar_despesa(void){
 
-    char cpf[12];
+    char datainfo[11];
+    char ecpf[12];
+    int number;
+    int opcc = -1;
+    int contador = 0;
+
+    FILE* fp;
+    DESPESA* ds;
+    ds = (DESPESA*) malloc(sizeof(DESPESA));
+    fp = fopen("despesas.dat", "r+b");
+    if (fp == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
 
     system("clear||cls");
     wprintf(L"===============================\n");
     wprintf(L"======== Editar Despesa =======\n");
     wprintf(L"===============================\n");
     wprintf(L"\n");
-    ler_cpf(cpf);
-    // LISTAR DESPESAS
+
+
+    wprintf(L"\nDigite o CPF do cliente cuja a despesa pertence(Apenas números): "); scanf("%[^\n]%*c", ecpf);
+    fflush(stdin);
+    wprintf(L"Digite a data da despesa que deseja editar(xx/yy/zzzz): "); scanf("%[^\n]%*c", datainfo);
+    fflush(stdin);
+    wprintf(L"Digite a numeração dela: "); scanf("%d", &number);
+    fflush(stdin);
+
+    if(verifica_existe_cliente(ecpf) == 0)
+    {
+        while(fread(ds,sizeof(DESPESA), 1, fp)) 
+        {
+            if ((strcmp(ds->cpf, ecpf) == 0) && (strcmp(ds->data, datainfo) == 0) && (ds->id == number) && (ds->status != 'x')) 
+            {
+                contador++;
+                do 
+                {
+                    system("clear||cls");
+                    wprintf(L"\n");
+                    wprintf(L"1 - CPF: %s\n", ds->cpf);
+                    wprintf(L"2 - Origem: %s\n", ds->despesatext);
+                    wprintf(L"3 - Saldo($): %.2f\n", ds->despesasaldo);
+                    wprintf(L"4 - Data: %s\n", ds->data);
+                    wprintf(L"5 - Numeração do dia: %d\n", ds->id);
+                    wprintf(L"0 - Finalizar alterações.\n");
+                    wprintf(L"\n Campo que deseja editar: "); scanf("%d",&opcc);
+                    fflush(stdin);
+                    switch (opcc) 
+                    {
+                    case 1:
+                        wprintf(L"\n");
+                        ler_cpf(ds->cpf);
+                        break;
+                    case 2:
+                        wprintf(L"\nDigite um pequeno texto sobre a origem da desta despesa(sem acentuação): "); scanf("%[^\n]%*c", ds->despesatext);
+                        fflush(stdin);
+                        break;
+                    case 3:
+                        wprintf(L"\n");
+                        w_saldo(&ds->despesasaldo);
+                        break;
+                    case 4:
+                        wprintf(L"\nDigite a data de quando foi cadastrada esta despesa(xx/yy/zzzz): "); scanf("%[^\n]%*c", ds->data);
+                        fflush(stdin);
+                        break;
+                    case 5:
+                        wprintf(L"\nDigite qual foi a numeração do dia desta despesa(1,2,3..): "); scanf("%d", &(ds->id));
+                        fflush(stdin);
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        invalido();
+                        break;
+                    }
+                    fseeko(fp, -1*(off_t)sizeof(DESPESA), SEEK_CUR);
+                    fwrite(ds, sizeof(DESPESA), 1, fp);
+                } while (opcc!=0);
+                break;
+            }
+        }
+
+        if (contador == 0)
+        {
+            wprintf(L"\n");
+            wprintf(L"Não foi encontrado a despesa informada deste cliente!");
+            wprintf(L"\nTecle <ENTER> para continuar...\n");
+            getchar();
+            fflush(stdin);
+        }
+
+    } else{
+        wprintf(L"\nCliente não encontrado!");
+        wprintf(L"\nTecle <ENTER> para continuar...\n");
+        getchar();
+        fflush(stdin);
+    }
 }
 
 void excluir_despesa(void){
