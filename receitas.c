@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <wchar.h>
 #include <stdbool.h>
+#include <time.h>
 #include "receitas.h"
 #include "variaveis.h"
 #include "funcoes.h"
