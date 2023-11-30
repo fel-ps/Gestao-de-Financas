@@ -302,4 +302,62 @@ int verifica_existe_cliente(char* cpf){
     return 1;
 }
 
+// GERADOR DE CHAVE (CHATGPT)
+void gerarCodigoAleatorio(char *id) 
+{
+    // Inicializa a semente do gerador de números aleatórios com o tempo atual
+    srand(time(NULL));
 
+    // Gera o primeiro caractere (letra maiúscula)
+    id[0] = 'A' + (rand() % 26);
+
+    // Gera o segundo caractere (número de 0 a 9)
+    id[1] = '0' + (rand() % 10);
+
+    // Gera os três caracteres restantes
+    for (int i = 2; i < 6; ++i) {
+        id[i] = gerarCaractereAleatorio();
+    }
+
+    // Adiciona o caractere nulo no final para formar uma string válida
+    id[5] = '\0';
+}
+
+// GERADOR DE CHAVE (CHATGPT)
+char gerarCaractereAleatorio() 
+{
+    // Gera um número aleatório entre 0 e 35
+    int randNum = rand() % 36;
+
+    // Converte o número para o caractere correspondente
+    if (randNum < 10) {
+        return '0' + randNum; // Números de 0 a 9
+    } else {
+        return 'A' + (randNum - 10); // Letras maiúsculas de A a Z
+    }
+}
+
+// LER DATA (CHAT GPT)
+void lerData(char* data) {
+    // Lê a data e valida até que uma entrada válida seja fornecida
+    do {
+        wprintf(L"Digite a data no formato dd/mm/aaaa: "); scanf("%10s", data);
+        getchar();
+        fflush(stdin);
+    } while (!validarData(data));
+}
+
+// VALIDA DATA (CHAT GPT)
+int validarData(const char *data) {
+    // Verifica se a data está no formato dd/mm/aaaa
+    int dia, mes, ano;
+    if (sscanf(data, "%2d/%2d/%4d", &dia, &mes, &ano) == 3) {
+        if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12) {
+            // Lógica básica para verificar se o ano é válido (pode precisar de regras adicionais)
+            if (ano >= 1900 && ano <= 2100) {
+                return true;
+            }
+        }
+    }
+    return false;
+}

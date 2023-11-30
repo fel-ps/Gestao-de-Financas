@@ -77,9 +77,8 @@ void cadastrar_receita(void){
 
 void editar_receita(void){
 
-    char datainfo[11];
+    char chaveinfo[6];
     char ecpf[12];
-    int number;
     int opcc = -1;
     int contador = 0;
 
@@ -101,27 +100,25 @@ void editar_receita(void){
 
     wprintf(L"\nDigite o CPF do cliente cuja a receita pertence(Apenas números): "); scanf("%[^\n]%*c", ecpf);
     fflush(stdin);
-    wprintf(L"Digite a data da receita que deseja editar(xx/yy/zzzz): "); scanf("%[^\n]%*c", datainfo);
-    fflush(stdin);
-    wprintf(L"Digite a numeração dela: "); scanf("%d", &number);
+    wprintf(L"Digite a chave dela: "); scanf("%[^\n]%*c", chaveinfo);
     fflush(stdin);
 
     if(verifica_existe_cliente(ecpf) == 0)
     {
         while(fread(rc,sizeof(RECEITA), 1, fp)) 
         {
-            if ((strcmp(rc->cpf, ecpf) == 0) && (strcmp(rc->data, datainfo) == 0) && (rc->id == number) && (rc->status != 'x')) 
+            if ((strcmp(rc->cpf, ecpf) == 0) && (strcmp(rc->id, chaveinfo) == 0) && (rc->status != 'x')) 
             {
                 contador++;
                 do 
                 {
                     system("clear||cls");
+                    wprintf(L"CHAVE: %s\n", rc->id);
                     wprintf(L"\n");
                     wprintf(L"1 - CPF: %s\n", rc->cpf);
                     wprintf(L"2 - Origem: %s\n", rc->receitatext);
                     wprintf(L"3 - Saldo($): %.2f\n", rc->receitasaldo);
                     wprintf(L"4 - Data: %s\n", rc->data);
-                    wprintf(L"5 - Numeração do dia: %d\n", rc->id);
                     wprintf(L"0 - Finalizar alterações.\n");
                     wprintf(L"\n Campo que deseja editar: "); scanf("%d",&opcc);
                     fflush(stdin);
@@ -140,11 +137,8 @@ void editar_receita(void){
                         w_saldo(&rc->receitasaldo);
                         break;
                     case 4:
-                        wprintf(L"\nDigite a data de quando foi cadastrada esta receita(xx/yy/zzzz): "); scanf("%[^\n]%*c", rc->data);
-                        fflush(stdin);
-                        break;
-                    case 5:
-                        wprintf(L"\nDigite qual foi a numeração do dia desta receita(1,2,3..): "); scanf("%d", &(rc->id));
+                        wprintf(L"\n");
+                        lerData(rc->data);
                         fflush(stdin);
                         break;
                     case 0:
@@ -163,7 +157,7 @@ void editar_receita(void){
         if (contador == 0)
         {
             wprintf(L"\n");
-            wprintf(L"Não foi encontrado a receita informada deste cliente!");
+            wprintf(L"Não foi encontrada a receita informada deste cliente!");
             wprintf(L"\nTecle <ENTER> para continuar...\n");
             getchar();
             fflush(stdin);
@@ -179,17 +173,14 @@ void editar_receita(void){
 
 void excluir_receita(void){
 
-    char datainfo[11];
+    char chaveinfo[6];
     char ecpf[12];
-    int number;
     wprintf(L"\nDigite o CPF do cliente cuja a receita pertence(Apenas números): "); scanf("%[^\n]%*c", ecpf);
     fflush(stdin);
-    wprintf(L"Digite a data da receita que deseja excluir(xx/yy/zzzz): "); scanf("%[^\n]%*c", datainfo);
-    fflush(stdin);
-    wprintf(L"Digite a numeração dela: "); scanf("%d", &number);
+    wprintf(L"Digite a chave dela: "); scanf("%[^\n]%*c", chaveinfo);
     fflush(stdin);
 
-    excluirReceita(ecpf, datainfo, number);
+    excluirReceita(ecpf, chaveinfo);
 }
 
 void listar_receitas(void){
@@ -240,9 +231,8 @@ RECEITA* preenche_receita(void)
     wprintf(L"Digite um pequeno texto sobre a origem da desta receita(sem acentuação): "); scanf("%[^\n]%*c", rc->receitatext);
     fflush(stdin);
     w_saldo(&rc->receitasaldo);
-    wprintf(L"Digite a numeração da receita desta data(1,2,3..): "); scanf("%d", &(rc->id));
-    fflush(stdin);
     obterDataAtual(rc->data);
+    gerarCodigoAleatorio(rc->id);
     rc->status = 'a';
 
     return rc;
@@ -255,8 +245,8 @@ void exibe_receitas(RECEITA* rc, char *icpf)
     if (rc == NULL) {
         wprintf(L"\n= = = Receitas Inexistentes = = =\n");
     } else if((strcmp(rc->cpf, icpf) == 0) && (rc->status != 'x')) {
-        wprintf(L"\n----- %s -----\n", rc->data);
-        wprintf(L"= = = Receita %d = = =\n", rc->id);
+        wprintf(L"\n------ %s ------\n", rc->data);
+        wprintf(L"CHAVE: %s \n", rc->id);
         wprintf(L"Valor Adiquirido(R$): %.2f\n", rc->receitasaldo);
         wprintf(L"Origem: %s\n", rc->receitatext);
     }
@@ -266,7 +256,7 @@ void exibe_receitas(RECEITA* rc, char *icpf)
 } 
 
 // EXCLUIR RECEITA
-void excluirReceita(char* cpf, char* datainfo, int number) {
+void excluirReceita(char* cpf, char* chaveinfo) {
 
     FILE* fp;
     RECEITA* rc;
@@ -278,7 +268,7 @@ void excluirReceita(char* cpf, char* datainfo, int number) {
     }
 
     while (fread(rc, sizeof(RECEITA), 1, fp)) {
-        if ((strcmp(rc->cpf, cpf) == 0) && (strcmp(rc->data, datainfo) == 0) && (rc->id == number))  {
+        if ((strcmp(rc->cpf, cpf) == 0) && (strcmp(rc->id, chaveinfo) == 0))  {
             rc->status = 'x';
             fseeko(fp, -1*(off_t)sizeof(RECEITA), SEEK_CUR);
             fwrite(rc, sizeof(RECEITA), 1, fp);
@@ -295,7 +285,7 @@ void excluirReceita(char* cpf, char* datainfo, int number) {
 
     free(rc);
     fclose(fp);
-    wprintf(L"\nReceita não encontrado.\n");
+    wprintf(L"\nReceita não encontrada.\n");
 
     wprintf(L"\nTecle <ENTER> para continuar...\n");
     getchar();

@@ -102,9 +102,8 @@ void listar_despesas(void){
 
 void editar_despesa(void){
 
-    char datainfo[11];
+    char chaveinfo[6];
     char ecpf[12];
-    int number;
     int opcc = -1;
     int contador = 0;
 
@@ -126,27 +125,25 @@ void editar_despesa(void){
 
     wprintf(L"\nDigite o CPF do cliente cuja a despesa pertence(Apenas números): "); scanf("%[^\n]%*c", ecpf);
     fflush(stdin);
-    wprintf(L"Digite a data da despesa que deseja editar(xx/yy/zzzz): "); scanf("%[^\n]%*c", datainfo);
-    fflush(stdin);
-    wprintf(L"Digite a numeração dela: "); scanf("%d", &number);
+    wprintf(L"Digite a chave dela: "); scanf("%[^\n]%*c", chaveinfo);
     fflush(stdin);
 
     if(verifica_existe_cliente(ecpf) == 0)
     {
         while(fread(ds,sizeof(DESPESA), 1, fp)) 
         {
-            if ((strcmp(ds->cpf, ecpf) == 0) && (strcmp(ds->data, datainfo) == 0) && (ds->id == number) && (ds->status != 'x')) 
+            if ((strcmp(ds->cpf, ecpf) == 0) && (strcmp(ds->id, chaveinfo) == 0) && (ds->status != 'x')) 
             {
                 contador++;
                 do 
                 {
                     system("clear||cls");
+                    wprintf(L"CHAVE: %s\n", ds->id);
                     wprintf(L"\n");
                     wprintf(L"1 - CPF: %s\n", ds->cpf);
                     wprintf(L"2 - Origem: %s\n", ds->despesatext);
                     wprintf(L"3 - Saldo($): %.2f\n", ds->despesasaldo);
                     wprintf(L"4 - Data: %s\n", ds->data);
-                    wprintf(L"5 - Numeração do dia: %d\n", ds->id);
                     wprintf(L"0 - Finalizar alterações.\n");
                     wprintf(L"\n Campo que deseja editar: "); scanf("%d",&opcc);
                     fflush(stdin);
@@ -165,11 +162,8 @@ void editar_despesa(void){
                         w_saldo(&ds->despesasaldo);
                         break;
                     case 4:
-                        wprintf(L"\nDigite a data de quando foi cadastrada esta despesa(xx/yy/zzzz): "); scanf("%[^\n]%*c", ds->data);
-                        fflush(stdin);
-                        break;
-                    case 5:
-                        wprintf(L"\nDigite qual foi a numeração do dia desta despesa(1,2,3..): "); scanf("%d", &(ds->id));
+                        wprintf(L"\n");
+                        lerData(ds->data);
                         fflush(stdin);
                         break;
                     case 0:
@@ -188,7 +182,7 @@ void editar_despesa(void){
         if (contador == 0)
         {
             wprintf(L"\n");
-            wprintf(L"Não foi encontrado a despesa informada deste cliente!");
+            wprintf(L"Não foi encontrada a despesa informada deste cliente!");
             wprintf(L"\nTecle <ENTER> para continuar...\n");
             getchar();
             fflush(stdin);
@@ -204,17 +198,14 @@ void editar_despesa(void){
 
 void excluir_despesa(void){
 
-    char datainfo[11];
+    char chaveinfo[6];
     char ecpf[12];
-    int number;
     wprintf(L"\nDigite o CPF do cliente cuja a despesa pertence(Apenas números): "); scanf("%[^\n]%*c", ecpf);
     fflush(stdin);
-    wprintf(L"Digite a data da despesa que deseja excluir(xx/yy/zzzz): "); scanf("%[^\n]%*c", datainfo);
-    fflush(stdin);
-    wprintf(L"Digite a numeração dela: "); scanf("%d", &number);
+    wprintf(L"Digite a chave dela: "); scanf("%[^\n]%*c", chaveinfo);
     fflush(stdin);
 
-    excluirDespesa(ecpf, datainfo, number);
+    excluirDespesa(ecpf, chaveinfo);
 }
 
 // CADASTRA DESPESA
@@ -238,9 +229,8 @@ DESPESA* preenche_despesa(void)
     wprintf(L"Digite um pequeno texto sobre a origem da desta receita(sem acentuação): "); scanf("%[^\n]%*c", ds->despesatext);
     fflush(stdin);
     w_saldo(&ds->despesasaldo);
-    wprintf(L"Digite a numeração da despesa do dia de hoje(1,2,3..): "); scanf("%d", &(ds->id));
-    fflush(stdin);
     obterDataAtual(ds->data);
+    gerarCodigoAleatorio(ds->id);
     ds->status = 'a';
 
     return ds;
@@ -253,9 +243,9 @@ void exibe_despesas(DESPESA* ds, char *icpf)
     if (ds == NULL) {
         wprintf(L"\n= = = Despesas Inexistentes = = =\n");
     } else if((strcmp(ds->cpf, icpf) == 0) && (ds->status != 'x')) {
-        wprintf(L"\n----- %s -----\n", ds->data);
-        wprintf(L"= = = Despesa %d = = =\n", ds->id);
-        wprintf(L"Valor Adiquirido(R$): %.2f\n", ds->despesasaldo);
+        wprintf(L"\n------ %s ------\n", ds->data);
+        wprintf(L"CHAVE: %s \n", ds->id);
+        wprintf(L"Valor Perdido(R$): %.2f\n", ds->despesasaldo);
         wprintf(L"Origem: %s\n", ds->despesatext);
     }
     else {
@@ -264,7 +254,7 @@ void exibe_despesas(DESPESA* ds, char *icpf)
 }
 
 // EXCLUIR DESPESA
-void excluirDespesa(char* cpf, char* datainfo, int number) {
+void excluirDespesa(char* cpf, char* chaveinfo) {
 
     FILE* fp;
     DESPESA* ds;
@@ -276,7 +266,7 @@ void excluirDespesa(char* cpf, char* datainfo, int number) {
     }
 
     while (fread(ds, sizeof(DESPESA), 1, fp)) {
-        if ((strcmp(ds->cpf, cpf) == 0) && (strcmp(ds->data, datainfo) == 0) && (ds->id == number))  {
+        if ((strcmp(ds->cpf, cpf) == 0) && (strcmp(ds->id, chaveinfo) == 0))  {
             ds->status = 'x';
             fseeko(fp, -1*(off_t)sizeof(DESPESA), SEEK_CUR);
             fwrite(ds, sizeof(DESPESA), 1, fp);

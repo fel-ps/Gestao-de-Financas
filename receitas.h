@@ -4,7 +4,7 @@ typedef struct receitas {
     char cpf[12];
     char receitatext[500];
     double receitasaldo;
-    int id;
+    char id[6];
     char data[11];
     char status;
 } RECEITA;
@@ -20,4 +20,4 @@ void listar_receitas(void);
 
 RECEITA* preenche_receita(void);
 void exibe_receitas(RECEITA* rc, char *icpf);
-void excluirReceita(char* cpf, char* datainfo, int number);
+void excluirReceita(char* cpf, char* chaveinfo);
