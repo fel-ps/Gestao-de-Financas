@@ -75,15 +75,15 @@ int main(void){
 // FUNÇÕES
 void inicio(void){
     system("clear||cls");
-    wprintf(L"=========================      |  |    \n");
-    wprintf(L"======= PyBanking =======    $$|$$|$$  \n");
-    wprintf(L"=========================   $$ |  | $$ \n");
-    wprintf(L"1 - Módulo de Clientes      $$ |  |    \n");
-    wprintf(L"2 - Módulo de Receitas       $$|$$|$$  \n");
-    wprintf(L"3 - Módulo de Despesas         |  | $$ \n");
-    wprintf(L"4 - Módulo de Relatórios    $$ |  | $$ \n");
-    wprintf(L"5 - Sobre                    $$|$$|$$  \n");
-    wprintf(L"0 - Sair                       |  |    \n");
+    wprintf(L"=========================      \033[0;32m|  |\033[0m    \n");
+    wprintf(L"======= PyBanking =======    \033[0;32m$$|$$|$$\033[0m  \n");
+    wprintf(L"=========================   \033[0;32m$$ |  | $$\033[0m \n");
+    wprintf(L"1 - Módulo de Clientes      \033[0;32m$$ |  |\033[0m    \n");
+    wprintf(L"2 - Módulo de Receitas       \033[0;32m$$|$$|$$\033[0m  \n");
+    wprintf(L"3 - Módulo de Despesas         \033[0;32m|  | $$\033[0m \n");
+    wprintf(L"4 - Módulo de Relatórios    \033[0;32m$$ |  | $$\033[0m \n");
+    wprintf(L"5 - Sobre                    \033[0;32m$$|$$|$$\033[0m  \n");
+    wprintf(L"0 - Sair                       \033[0;32m|  |\033[0m    \n");
 }
 
 void sobre(void) {
