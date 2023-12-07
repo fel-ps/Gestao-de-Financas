@@ -151,7 +151,10 @@ void editar_despesa(void){
                     {
                     case 1:
                         wprintf(L"\n");
-                        ler_cpf(ds->cpf);
+                        do 
+                        {
+                            ler_cpf(ds->cpf);
+                        } while (verifica_existe_cliente(ds->cpf) != 0);
                         break;
                     case 2:
                         wprintf(L"\nDigite um pequeno texto sobre a origem da desta despesa(sem acentuação): "); scanf("%[^\n]%*c", ds->despesatext);

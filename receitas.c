@@ -126,7 +126,10 @@ void editar_receita(void){
                     {
                     case 1:
                         wprintf(L"\n");
-                        ler_cpf(rc->cpf);
+                        do 
+                        {
+                            ler_cpf(rc->cpf);
+                        } while (verifica_existe_cliente(rc->cpf) != 0);
                         break;
                     case 2:
                         wprintf(L"\nDigite um pequeno texto sobre a origem da desta receita(sem acentuação): "); scanf("%[^\n]%*c", rc->receitatext);
