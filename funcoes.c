@@ -18,7 +18,7 @@ void invalido(void) {
     fflush(stdin);
 }
 
-// TIME_ATUAL CHAT GPT
+// TIME_ATUAL (CHAT GPT)
 void obterDataAtual(char *data) {
     time_t t;
     struct tm *info;
@@ -31,6 +31,18 @@ void obterDataAtual(char *data) {
     //char dataAtual[11];
     //obterDataAtual(dataAtual);
     //wprintf(L"Data atual: %s\n", dataAtual);
+}
+
+// FUNÇÃO PEGA MÊS ATUAL
+void obterMesAtual(char *mes) {
+    time_t t;
+    struct tm *info;
+
+    time(&t);
+    info = localtime(&t);
+
+    // Use o campo tm_mon + 1 para obter o mês (1 a 12)
+    snprintf(mes, 3, "%02d", info->tm_mon + 1);
 }
 
 // VALIDAR CPF https://github.com/mts-lucas

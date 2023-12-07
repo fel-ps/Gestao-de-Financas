@@ -3,6 +3,7 @@
 void invalido(void);
 
 void obterDataAtual(char *data);
+void obterMesAtual(char *data);
 char gerarCaractereAleatorio();
 void gerarCodigoAleatorio(char *id);
 
