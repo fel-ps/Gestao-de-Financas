@@ -7,6 +7,7 @@
 #include "receitas.h"
 #include "variaveis.h"
 #include "funcoes.h"
+#include "clientes.h"
 
 // VARIÁVEIS
 
@@ -63,8 +64,29 @@ void cadastrar_receita(void){
         exit(1);
     }
 
+    FILE* fp2;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+    fp2 = fopen("clientes.dat", "r+b");
+    if (fp2 == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
     receita = preenche_receita();
     fwrite(receita, sizeof(RECEITA), 1, fp);
+
+    while(fread(cl, sizeof(Cliente), 1, fp2)) {
+        if ((strcmp(cl->cpf, receita->cpf) == 0) && (cl->status != 'x')) {
+            cl->saldo += receita->receitasaldo;
+        }
+    }
+
+    fseeko(fp2, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+    fwrite(cl, sizeof(Cliente), 1, fp2);
+
+    fclose(fp2);
+    free(cl);
     fclose(fp);
     free(receita);
 
@@ -137,7 +159,52 @@ void editar_receita(void){
                         break;
                     case 3:
                         wprintf(L"\n");
+
+                        FILE* fp2;
+                        Cliente* cl;
+                        cl = (Cliente*) malloc(sizeof(Cliente));
+                        fp2 = fopen("clientes.dat", "r+b");
+                        if (fp2 == NULL) {
+                            wprintf(L"\nErro na criação");
+                            exit(1);
+                        }
+
+                        while(fread(cl, sizeof(Cliente), 1, fp2)) {
+                            if ((strcmp(cl->cpf, rc->cpf) == 0) && (cl->status != 'x')) {
+                                cl->saldo -= rc->receitasaldo;
+                            }
+                        }
+
+                        fseeko(fp2, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+                        fwrite(cl, sizeof(Cliente), 1, fp2);
+
+                        fclose(fp2);
+                        free(cl);
+
                         w_saldo(&rc->receitasaldo);
+                        fflush(stdin);
+
+                        FILE* fp3;
+                        Cliente* clf;
+                        clf = (Cliente*) malloc(sizeof(Cliente));
+                        fp3 = fopen("clientes.dat", "r+b");
+                        if (fp3 == NULL) {
+                            wprintf(L"\nErro na criação");
+                            exit(1);
+                        }
+
+                        while(fread(clf, sizeof(Cliente), 1, fp3)) {
+                            if ((strcmp(clf->cpf, rc->cpf) == 0) && (clf->status != 'x')) {
+                                clf->saldo += rc->receitasaldo;
+                            }
+                        }
+
+                        fseeko(fp3, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+                        fwrite(clf, sizeof(Cliente), 1, fp3);
+
+                        fclose(fp3);
+                        free(clf);
+
                         break;
                     case 4:
                         wprintf(L"\n");
@@ -214,8 +281,7 @@ void listar_receitas(void){
 }
 
 // CADASTRA RECEITA
-RECEITA* preenche_receita(void) 
-{
+RECEITA* preenche_receita(void) {
     RECEITA* rc;
     rc = (RECEITA*) malloc(sizeof(RECEITA));
 
@@ -242,8 +308,7 @@ RECEITA* preenche_receita(void)
 }
 
 // EXIBIR RECEITAS
-void exibe_receitas(RECEITA* rc, char *icpf)
-{
+void exibe_receitas(RECEITA* rc, char *icpf){
     //  (rc->data == datinhainfo) && 
     if (rc == NULL) {
         wprintf(L"\n= = = Receitas Inexistentes = = =\n");

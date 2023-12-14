@@ -322,5 +322,3 @@ void excluirClientePorCPF(char* cpf) {
     fflush(stdin);
 }
 
-
-    

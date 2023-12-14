@@ -7,6 +7,7 @@
 #include "despesas.h"
 #include "variaveis.h"
 #include "funcoes.h"
+#include "clientes.h"
 
 // VARIÁVEIS
 
@@ -63,8 +64,29 @@ void cadastrar_despesa(void){
         exit(1);
     }
 
+    FILE* fp2;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+    fp2 = fopen("clientes.dat", "r+b");
+    if (fp2 == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
     despesa = preenche_despesa();
     fwrite(despesa, sizeof(DESPESA), 1, fp);
+
+    while(fread(cl, sizeof(Cliente), 1, fp2)) {
+        if ((strcmp(cl->cpf, despesa->cpf) == 0) && (cl->status != 'x')) {
+            cl->saldo -= despesa->despesasaldo;
+        }
+    }
+
+    fseeko(fp2, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+    fwrite(cl, sizeof(Cliente), 1, fp2);
+
+    fclose(fp2);
+    free(cl);
     fclose(fp);
     free(despesa);
 
@@ -162,7 +184,52 @@ void editar_despesa(void){
                         break;
                     case 3:
                         wprintf(L"\n");
+
+                        FILE* fp2;
+                        Cliente* cl;
+                        cl = (Cliente*) malloc(sizeof(Cliente));
+                        fp2 = fopen("clientes.dat", "r+b");
+                        if (fp2 == NULL) {
+                            wprintf(L"\nErro na criação");
+                            exit(1);
+                        }
+
+                        while(fread(cl, sizeof(Cliente), 1, fp2)) {
+                            if ((strcmp(cl->cpf, ds->cpf) == 0) && (cl->status != 'x')) {
+                                cl->saldo += ds->despesasaldo;
+                            }
+                        }
+
+                        fseeko(fp2, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+                        fwrite(cl, sizeof(Cliente), 1, fp2);
+
+                        fclose(fp2);
+                        free(cl);
+
                         w_saldo(&ds->despesasaldo);
+                        fflush(stdin);
+
+                        FILE* fp3;
+                        Cliente* clf;
+                        clf = (Cliente*) malloc(sizeof(Cliente));
+                        fp3 = fopen("clientes.dat", "r+b");
+                        if (fp3 == NULL) {
+                            wprintf(L"\nErro na criação");
+                            exit(1);
+                        }
+
+                        while(fread(clf, sizeof(Cliente), 1, fp3)) {
+                            if ((strcmp(clf->cpf, ds->cpf) == 0) && (clf->status != 'x')) {
+                                clf->saldo -= ds->despesasaldo;
+                            }
+                        }
+
+                        fseeko(fp3, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+                        fwrite(clf, sizeof(Cliente), 1, fp3);
+
+                        fclose(fp3);
+                        free(clf);
+
                         break;
                     case 4:
                         wprintf(L"\n");
@@ -292,3 +359,4 @@ void excluirDespesa(char* cpf, char* chaveinfo) {
     getchar();
     fflush(stdin);
 }
+
