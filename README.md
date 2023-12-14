@@ -18,6 +18,15 @@ git clone https://github.com/fel-ps/Gestao-de-Financas.git
 ```
 gcc -Wall *.c -o exe
 ```
+
+- Para executar no Linux:
+
 ```
-.\exe
+./exe
+```
+
+- Para executar no Windows:
+
+```
+exe
 ```
