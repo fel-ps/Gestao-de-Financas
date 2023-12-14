@@ -335,16 +335,37 @@ void excluirDespesa(char* cpf, char* chaveinfo) {
         exit(1);
     }
 
+    FILE* fp2;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+    fp2 = fopen("clientes.dat", "r+b");
+    if (fp2 == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
     while (fread(ds, sizeof(DESPESA), 1, fp)) {
         if ((strcmp(ds->cpf, cpf) == 0) && (strcmp(ds->id, chaveinfo) == 0))  {
             ds->status = 'x';
             fseeko(fp, -1*(off_t)sizeof(DESPESA), SEEK_CUR);
             fwrite(ds, sizeof(DESPESA), 1, fp);
+
+            while(fread(cl, sizeof(Cliente), 1, fp2)) {
+                if ((strcmp(cl->cpf, ds->cpf) == 0) && (cl->status != 'x')) {
+                    cl->saldo += ds->despesasaldo;
+                }
+            }
+
+            fseeko(fp2, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+            fwrite(cl, sizeof(Cliente), 1, fp2);
+
             wprintf(L"\nDespesa excluída.\n");
             wprintf(L"\nTecle <ENTER> para continuar...\n");
             getchar();
             fflush(stdin);
 
+            fclose(fp2);
+            free(cl);
             free(ds);
             fclose(fp);
             return;

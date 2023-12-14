@@ -335,16 +335,37 @@ void excluirReceita(char* cpf, char* chaveinfo) {
         exit(1);
     }
 
+    FILE* fp2;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+    fp2 = fopen("clientes.dat", "r+b");
+    if (fp2 == NULL) {
+        wprintf(L"\nErro na criação");
+        exit(1);
+    }
+
     while (fread(rc, sizeof(RECEITA), 1, fp)) {
         if ((strcmp(rc->cpf, cpf) == 0) && (strcmp(rc->id, chaveinfo) == 0))  {
             rc->status = 'x';
             fseeko(fp, -1*(off_t)sizeof(RECEITA), SEEK_CUR);
             fwrite(rc, sizeof(RECEITA), 1, fp);
+
+            while(fread(cl, sizeof(Cliente), 1, fp2)) {
+                if ((strcmp(cl->cpf, rc->cpf) == 0) && (cl->status != 'x')) {
+                    cl->saldo -= rc->receitasaldo;
+                }
+            }
+
+            fseeko(fp2, -1*(off_t)sizeof(Cliente), SEEK_CUR);
+            fwrite(cl, sizeof(Cliente), 1, fp2);
+
             wprintf(L"\nReceita excluída.\n");
             wprintf(L"\nTecle <ENTER> para continuar...\n");
             getchar();
             fflush(stdin);
 
+            fclose(fp2);
+            free(cl);
             free(rc);
             fclose(fp);
             return;
