@@ -164,7 +164,7 @@ void editar_despesa(void){
                     wprintf(L"\n");
                     wprintf(L"1 - CPF: %s\n", ds->cpf);
                     wprintf(L"2 - Origem: %s\n", ds->despesatext);
-                    wprintf(L"3 - Saldo($): %.2f\n", ds->despesasaldo);
+                    wprintf(L"3 - Valor da despesa($): %.2f\n", ds->despesasaldo);
                     wprintf(L"4 - Data: %s\n", ds->data);
                     wprintf(L"0 - Finalizar alterações.\n");
                     wprintf(L"\n Campo que deseja editar: "); scanf("%d",&opcc);

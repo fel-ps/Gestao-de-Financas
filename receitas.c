@@ -139,7 +139,7 @@ void editar_receita(void){
                     wprintf(L"\n");
                     wprintf(L"1 - CPF: %s\n", rc->cpf);
                     wprintf(L"2 - Origem: %s\n", rc->receitatext);
-                    wprintf(L"3 - Saldo($): %.2f\n", rc->receitasaldo);
+                    wprintf(L"3 - Valor da receita($): %.2f\n", rc->receitasaldo);
                     wprintf(L"4 - Data: %s\n", rc->data);
                     wprintf(L"0 - Finalizar alterações.\n");
                     wprintf(L"\n Campo que deseja editar: "); scanf("%d",&opcc);
